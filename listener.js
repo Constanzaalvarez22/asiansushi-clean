@@ -1,17 +1,13 @@
 const admin = require("firebase-admin");
-
 const PDFDocument = require("pdfkit");
-
 const fs = require("fs");
-
 const path = require("path");
-
 const { print } = require("pdf-to-printer");
 
 
 // FIREBASE
 
-const serviceAccount = require("C:\Users\CAJA\Downloadsasian-sushi-7095b-firebase-adminsdk-fbsvc-555667f28e.json");
+const serviceAccount = require("C:/Users/CAJA/Downloads/asian-sushi-7095b-firebase-adminsdk-fbsvc-a49c42dc7b");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
@@ -19,121 +15,128 @@ admin.initializeApp({
 
 const db = admin.firestore();
 
-console.log("🔥 Escuchando pedidos...");
+console.log("🔥 Buscando pedidos...");
 
 
-// ESCUCHAR PEDIDOS
+// CONTROLAR DUPLICADOS
 
-db.collection("pedidos").onSnapshot((snapshot) => {
+const pedidosProcesados = new Set();
 
-  snapshot.docChanges().forEach(async (change) => {
 
-    console.log("TIPO:", change.type);
+// BUSCAR CADA 5 SEGUNDOS
 
-    if (change.type === "added") {
+setInterval(async () => {
+
+  try {
+
+    const snapshot = await db.collection("pedidos").get();
+
+    snapshot.forEach(async (docSnap) => {
+
+      const id = docSnap.id;
+
+      // SI YA FUE IMPRESO
+
+      if (pedidosProcesados.has(id)) {
+        return;
+      }
+
+      pedidosProcesados.add(id);
+
+      const pedido = docSnap.data();
 
       console.log("🛒 NUEVO PEDIDO");
-
-      const pedido = change.doc.data();
-
-      console.log(pedido);
 
       try {
 
         const pdfPath = path.join(__dirname, "ticket.pdf");
 
-        const doc = new PDFDocument({
+        const docPdf = new PDFDocument({
           size: [220, 500],
           margin: 10
         });
 
         const stream = fs.createWriteStream(pdfPath);
 
-        doc.pipe(stream);
+        docPdf.pipe(stream);
 
 
         // TITULO
 
-        doc
+        docPdf
           .fontSize(18)
           .text("ASIAN SUSHI", {
             align: "center"
           });
 
-        doc.moveDown();
+        docPdf.moveDown();
 
 
-        // DATOS CLIENTE
+        // CLIENTE
 
-        doc.fontSize(12);
+        docPdf.fontSize(12);
 
-        doc.text("Cliente: " + pedido.cliente);
+        docPdf.text("Cliente: " + pedido.cliente);
+        docPdf.text("Telefono: " + pedido.telefono);
+        docPdf.text("Direccion: " + pedido.direccion);
+        docPdf.text("Detalle:");
+        docPdf.text(pedido.direccionTexto);
 
-        doc.text("Telefono: " + pedido.telefono);
-
-        doc.text("Direccion: " + pedido.direccion);
-
-        doc.text("Detalle direccion:");
-
-        doc.text(pedido.direccionTexto);
-
-        doc.moveDown();
+        docPdf.moveDown();
 
 
         // PRODUCTOS
 
-        doc.text("PRODUCTOS:");
-
-        doc.moveDown(0.5);
+        docPdf.text("PRODUCTOS:");
 
         pedido.productos.forEach((item) => {
 
-          doc.text(item.nombre);
+          docPdf.moveDown(0.5);
 
-          doc.text("$" + item.precio);
+          docPdf.text(item.nombre);
 
-          doc.moveDown();
+          docPdf.text("$" + item.precio);
 
         });
 
 
         // EXTRAS
 
-        doc.text("Palitos: " + pedido.palitos);
+        docPdf.moveDown();
 
-        doc.text("Salsas: " + pedido.salsas);
+        docPdf.text("Palitos: " + pedido.palitos);
+        docPdf.text("Salsas: " + pedido.salsas);
 
-        doc.moveDown();
+        docPdf.moveDown();
 
 
-        // TOTALES
+        // TOTAL
 
-        doc.text("Delivery: $" + pedido.delivery);
+        docPdf.text("Delivery: $" + pedido.delivery);
+        docPdf.text("Subtotal: $" + pedido.subtotal);
 
-        doc.text("Subtotal: $" + pedido.subtotal);
+        docPdf.moveDown();
 
-        doc.moveDown();
-
-        doc
+        docPdf
           .fontSize(16)
           .text("TOTAL: $" + pedido.total);
 
 
         // FECHA
 
-        doc.moveDown();
+        docPdf.moveDown();
 
-        doc.fontSize(10);
+        docPdf.fontSize(10);
 
-        doc.text(pedido.fecha);
+        docPdf.text(pedido.fecha);
 
 
         // FINALIZAR PDF
 
-        doc.end();
+        docPdf.end();
 
 
-        // ESPERAR GUARDADO
+        // ESPERAR
 
         await new Promise((resolve) => {
           stream.on("finish", resolve);
@@ -144,18 +147,24 @@ db.collection("pedidos").onSnapshot((snapshot) => {
 
         // IMPRIMIR
 
-        await print(pdfPath, {
-          printer: "impresora CAJA"
-        });
+        await print(pdfPath);
 
         console.log("✅ IMPRESIÓN EXITOSA");
 
       } catch (err) {
 
-        console.error("ERROR:");
-        console.error(err);
+        console.log("❌ ERROR IMPRIMIENDO");
+        console.log(err);
 
       }
-    }
-  });
-});
+
+    });
+
+  } catch (error) {
+
+    console.log("❌ ERROR FIREBASE");
+    console.log(error);
+
+  }
+
+}, 5000);
