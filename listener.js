@@ -11,7 +11,7 @@ const { print } = require("pdf-to-printer");
 
 // FIREBASE
 
-const serviceAccount = require("./asian-sushi-7095b-firebase-adminsdk-fbsvc-555667f28e.json");
+const serviceAccount = require("C:\Users\CAJA\Downloadsasian-sushi-7095b-firebase-adminsdk-fbsvc-555667f28e.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
