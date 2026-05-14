@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Asian Sushi - Comandas</title>
+
+  <style>
+
+    body{
+      font-family: Arial;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+
+    h1{
+      color: #111;
+    }
+
+    h2{
+      margin-top: 30px;
+    }
+
+    button{
+      margin: 5px;
+      padding: 10px 15px;
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      background: black;
+      color: white;
+    }
+
+    input, select{
+      margin: 5px;
+      padding: 10px;
+      width: 260px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    #lista{
+      margin-top: 20px;
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    #total{
+      color: green;
+      font-size: 28px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<h1>Asian Sushi - Comandas</h1>
+
+<input type="text" id="cliente" placeholder="Nombre cliente">
+
+<input type="text" id="telefono" placeholder="Número teléfono">
+
+<input type="text" id="Palitos" placeholder="Cantidad de palitos">
+
+<input type="text" id="Salsas" placeholder="Salsas">
+
+<select id="direccion" onchange="actualizarTotal()">
+
+  <option value="Retiro en local|0">
+    Retiro en local - $0
+  </option>
+
+  <option value="Ovalle|2500">
+    Delivery Ovalle - $2.500
+  </option>
+
+  <option value="Extremo Norte|3000">
+    Delivery Extremo Norte - $3.000
+  </option>
+
+  <option value="Extremo Sur|4000">
+    Delivery Extremo Sur - $4.000
+  </option>
+
+</select>
+
+<br><br>
+
+<input
+type="text"
+id="direccionTexto"
+placeholder="Escribe la dirección exacta">
+
+<h2>Tablas</h2>
+
+<button onclick="agregarPedido('Tabla Individual 20', 9990)">
+  Tabla 20
+</button>
+
+<button onclick="agregarPedido('Tabla Familiar 40', 18990)">
+  Tabla 40
+</button>
+
+<button onclick="agregarPedido('Tabla Familiar 60', 27990)">
+  Tabla 60
+</button>
+
+<button onclick="agregarPedido('Tabla Familiar 80', 36490)">
+  Tabla 80
+</button>
+
+<h2>Entrantes</h2>
+
+<button onclick="agregarPedido('Gyosas mixtas', 4990)">
+  Gyosas mixtas
+</button>
+
+<button onclick="agregarPedido('Camarón rebosado', 5490)">
+  Camarón rebosado
+</button>
+
+<button onclick="agregarPedido('Nigiri sake', 4690)">
+  Nigiri sake
+</button>
+
+<h2>Roll Personalizado</h2>
+
+<input
+type="text"
+id="rollPersonalizado"
+placeholder="Escribe el roll">
+
+<button onclick="agregarRollPersonalizado()">
+  Agregar Roll
+</button>
+
+<h2>Observación</h2>
+
+<input
+type="text"
+id="observacion"
+placeholder="Observación opcional">
+
+<h2>Resumen pedido</h2>
+
+<ul id="lista"></ul>
+
+<h2 id="total">
+  Total: $0
+</h2>
+
+<button onclick="enviarPedido()">
+  Enviar Pedido
+</button>
+
+<button onclick="vaciarPedido()">
+  Vaciar Pedido
+</button>
+
+<script type="module">
+
+// FIREBASE
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+  getFirestore,
+  collection,
+  addDoc
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+// CONFIG FIREBASE
+
+const firebaseConfig = {};
+
+
+// INICIAR FIREBASE
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+
+// PEDIDO
+
+window.pedido = [];
+
+
+// AGREGAR PEDIDO
+
+window.agregarPedido = function(producto, precio){
+
+  let observacion =
+    document.getElementById("observacion").value;
+
+  let item = producto;
+
+  if(observacion.trim() !== ""){
+
+    item += " | Obs: " + observacion;
+  }
+
+  pedido.push({
+    nombre: item,
+    precio: precio
+  });
+
+  renderizarPedido();
+
+  actualizarTotal();
+
+  document.getElementById("observacion").value = "";
+}
+
+
+// ROLL PERSONALIZADO
+
+window.agregarRollPersonalizado = function(){
+
+  let roll =
+    document.getElementById("rollPersonalizado").value;
+
+  if(roll.trim() !== ""){
+
+    agregarPedido("Roll: " + roll, 5490);
+
+    document.getElementById("rollPersonalizado").value = "";
+  }
+}
+
+
+// ELIMINAR
+
+window.eliminarProducto = function(index){
+
+  pedido.splice(index, 1);
+
+  renderizarPedido();
+
+  actualizarTotal();
+}
+
+
+// TOTAL
+
+window.actualizarTotal = function(){
+
+  let subtotal = 0;
+
+  pedido.forEach(item => {
+    subtotal += item.precio;
+  });
+
+  let direccionData =
+    document.getElementById("direccion")
+    .value.split("|");
+
+  let delivery =
+    parseInt(direccionData[1]);
+
+  let total = subtotal + delivery;
+
+  document.getElementById("total").innerText =
+    "Total: $" + total;
+}
+
+
+// RENDER
+
+window.renderizarPedido = function(){
+
+  let lista =
+    document.getElementById("lista");
+
+  lista.innerHTML = "";
+
+  pedido.forEach((item, index) => {
+
+    lista.innerHTML += `
+      <li style="margin-bottom:10px;">
+
+        ${item.nombre} - $${item.precio}
+
+        <button
+          onclick="eliminarProducto(${index})"
+          style="
+            background:red;
+            margin-left:10px;
+            padding:5px 10px;
+            border:none;
+            border-radius:5px;
+            color:white;
+          ">
+
+          X
+
+        </button>
+
+      </li>
+    `;
+  });
+}
+
+
+// VACIAR
+
+window.vaciarPedido = function(){
+
+  pedido = [];
+
+  renderizarPedido();
+
+  actualizarTotal();
+}
+
+
+// ENVIAR A FIREBASE
+
+window.enviarPedido = async function(){
+
+  try {
+
+    let cliente =
+      document.getElementById("cliente").value;
+
+    let telefono =
+      document.getElementById("telefono").value;
+
+    let palitos =
+      document.getElementById("Palitos").value;
+
+    let salsas =
+      document.getElementById("Salsas").value;
+
+    let direccionData =
+      document.getElementById("direccion")
+      .value.split("|");
+
+    let direccion =
+      direccionData[0];
+
+    let delivery =
+      parseInt(direccionData[1]);
+
+    let direccionTexto =
+      document.getElementById("direccionTexto").value;
+
+    let subtotal =
+      pedido.reduce((sum, item) =>
+      sum + item.precio, 0);
+
+    let total =
+      subtotal + delivery;
+
+    let datos = {
+
+      cliente: cliente,
+
+      telefono: telefono,
+
+      palitos: palitos,
+
+      salsas: salsas,
+
+      direccion: direccion,
+
+      direccionTexto: direccionTexto,
+
+      delivery: delivery,
+
+      subtotal: subtotal,
+
+      total: total,
+
+      productos: pedido,
+
+      fecha: new Date().toLocaleString()
+
+    };
+
+    await addDoc(
+      collection(db, "pedidos"),
+      datos
+    );
+
+    alert("Pedido enviado al local");
+
+    vaciarPedido();
+
+  } catch(error){
+
+    console.error(error);
+
+    alert("Error al enviar pedido");
+  }
+
+}
+
+</script>
+
+</body>
+</html>
