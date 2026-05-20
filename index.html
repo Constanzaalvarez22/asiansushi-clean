@@ -2,166 +2,1206 @@
 <html lang="es">
 
 <head>
+
   <meta charset="UTF-8">
+
   <title>Asian Sushi - Comandas</title>
 
   <style>
 
     body{
       font-family: Arial;
-      padding: 20px;
       background: #f5f5f5;
+      margin: 10px;
+      padding: 20px;
+    }
+
+    .container{
+      max-width: 1200px;
+      margin: auto;
     }
 
     h1{
+      text-align: center;
+      margin-bottom: 30px;
       color: #111;
     }
 
     h2{
-      margin-top: 30px;
+      margin-top: 10px;
+      margin-bottom: 15px;
+      color: #222;
     }
 
-    button{
-      margin: 5px;
-      padding: 10px 15px;
-      cursor: pointer;
-      border: none;
-      border-radius: 8px;
-      background: black;
-      color: white;
-    }
-
-    input, select{
-      margin: 5px;
-      padding: 10px;
-      width: 260px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-    }
-
-    #lista{
-      margin-top: 20px;
+    .card{
       background: white;
-      padding: 15px;
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 35px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .grid{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 15px;
+    }
+
+    input,
+    select{
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      font-size: 15px;
+    }
+
+    .checkbox-group{
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .checkbox-group label{
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #f5f5f5;
+      padding: 10px;
       border-radius: 10px;
     }
 
+    .checkbox-group input{
+      width: auto;
+    }
+
+    .productos{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+    button{
+      border: none;
+      border-radius: 10px;
+      padding: 12px 16px;
+      cursor: pointer;
+      background: #111;
+      color: white;
+      font-size: 14px;
+    }
+
+    button:hover{
+      opacity: 0.9;
+    }
+
+    .btn-danger{
+      background: red;
+    }
+
+    #lista{
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    #lista li{
+      background: #f7f7f7;
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
     #total{
+      text-align: right;
       color: green;
-      font-size: 28px;
+      font-size: 34px;
+      margin-top: 20px;
+    }
+
+    .acciones{
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .roll-box{
+      background: #fafafa;
+      border: 1px solid #ddd;
+      padding: 15px;
+      border-radius: 12px;
+      margin-top: 15px;
     }
 
   </style>
+
 </head>
 
 <body>
 
-<h1>Asian Sushi - Comandas</h1>
+<div class="container">
 
-<input type="text" id="cliente" placeholder="Nombre cliente">
+  <h1>🍣 Asian Sushi - Comandas</h1>
 
-<input type="text" id="telefono" placeholder="Número teléfono">
+  <!-- CLIENTE -->
 
-<input type="text" id="Palitos" placeholder="Cantidad de palitos">
+  <div class="card">
 
-<input type="text" id="Salsas" placeholder="Salsas">
+    <h2>Cliente</h2>
 
-<select id="direccion" onchange="actualizarTotal()">
+    <div class="grid">
 
-  <option value="Retiro en local|0">
-    Retiro en local - $0
-  </option>
+      <input
+      type="text"
+      id="cliente"
+      placeholder="Nombre cliente">
 
-  <option value="Ovalle|2500">
-    Delivery Ovalle - $2.500
-  </option>
+      <input
+      type="text"
+      id="telefono"
+      placeholder="Número teléfono">
 
-  <option value="Extremo Norte|3000">
-    Delivery Extremo Norte - $3.000
-  </option>
+      <select id="metodoPago">
 
-  <option value="Extremo Sur|4000">
-    Delivery Extremo Sur - $4.000
-  </option>
+        <option value="Efectivo">
+          Efectivo
+        </option>
 
-</select>
+        <option value="Transferencia">
+          Transferencia
+        </option>
 
-<br><br>
+        <option value="Debito">
+          Débito
+        </option>
 
-<input
-type="text"
-id="direccionTexto"
-placeholder="Escribe la dirección exacta">
+      </select>
 
-<h2>Tablas</h2>
+      <input
+      type="text"
+      id="vuelto"
+      placeholder="Vuelto para">
 
-<button onclick="agregarPedido('Tabla Individual 20', 9990)">
-  Tabla 20
-</button>
+    </div>
 
-<button onclick="agregarPedido('Tabla Familiar 40', 18990)">
-  Tabla 40
-</button>
+  </div>
 
-<button onclick="agregarPedido('Tabla Familiar 60', 27990)">
-  Tabla 60
-</button>
+  <!-- ENTREGA -->
 
-<button onclick="agregarPedido('Tabla Familiar 80', 36490)">
-  Tabla 80
-</button>
+  <div class="card">
 
-<h2>Entrantes</h2>
+    <h2>Entrega</h2>
 
-<button onclick="agregarPedido('Gyosas mixtas', 4990)">
-  Gyosas mixtas
-</button>
+    <div class="grid">
 
-<button onclick="agregarPedido('Camarón rebosado', 5490)">
-  Camarón rebosado
-</button>
+      <select
+      id="direccion"
+      onchange="actualizarTotal()">
 
-<button onclick="agregarPedido('Nigiri sake', 4690)">
-  Nigiri sake
-</button>
+        <option value="Retiro|0">
+          Retiro en local - $0
+        </option>
 
-<h2>Roll Personalizado</h2>
+        <option value="Ovalle|2500">
+          Ovalle - $2.500
+        </option>
 
-<input
-type="text"
-id="rollPersonalizado"
-placeholder="Escribe el roll">
+        <option value="Extremo Norte|3000">
+          Extremo Norte - $3.000
+        </option>
 
-<button onclick="agregarRollPersonalizado()">
-  Agregar Roll
-</button>
+        <option value="Extremo Sur|4000">
+          Extremo Sur - $4.000
+        </option>
 
-<h2>Observación</h2>
+      </select>
 
-<input
-type="text"
-id="observacion"
-placeholder="Observación opcional">
+      <input
+      type="text"
+      id="direccionTexto"
+      placeholder="Escribe la dirección exacta">
 
-<h2>Resumen pedido</h2>
+      <input
+      type="time"
+      id="horario">
 
-<ul id="lista"></ul>
+    </div>
 
-<h2 id="total">
-  Total: $0
-</h2>
+  </div>
 
-<button onclick="enviarPedido()">
-  Enviar Pedido
-</button>
+  <!-- EXTRAS -->
 
-<button onclick="vaciarPedido()">
-  Vaciar Pedido
-</button>
+  <div class="card">
+
+    <h2>Extras</h2>
+
+    <div class="grid">
+
+      <input
+      type="text"
+      id="Palitos"
+      placeholder="Cantidad de palitos">
+
+      <input
+      type="text"
+      id="Salsas"
+      placeholder="Salsas">
+
+    </div>
+
+    <div class="checkbox-group">
+
+      <label>
+        <input type="checkbox" id="jengibre">
+        Agregar jengibre
+      </label>
+
+      <label>
+        <input type="checkbox" id="wasabi">
+        Agregar wasabi
+      </label>
+
+    </div>
+
+  </div>
+
+  <div class="card">
+
+    <h2>Proteínas rebosadas</h2>
+
+    <div class="Proteínas">
+
+      <button onclick="agregarPedido('Camarón rebosado', 5490)">
+        Camarón rebosado
+      </button>
+
+      <button onclick="agregarPedido('Pollo rebosado', 4990)">
+        Pollo rebosado
+      </button>
+
+      <button onclick="agregarPedido('Salmón rebosado', 6290)">
+        Salmón rebosado
+      </button>
+
+
+      <h2>Gyozas</h2>
+
+    <div class="Gyozas">
+
+      <button onclick="agregarPedido('Gyozas mixtas', 4990)">
+        Gyozas mixtas
+      </button>
+
+      <button onclick="agregarPedido('Gyozas camarón', 4990)">
+        Gyozas camarón
+      </button>
+
+      <button onclick="agregarPedido('Gyozas cerdo', 4990)">
+        Gyozas cerdo
+      </button>
+
+      <button onclick="agregarPedido('Gyozas pollo', 4990)">
+        Gyozas pollo
+      </button>
+
+    </div>
+
+    <h2>Nigiris</h2>
+
+    <div class="Nigiris">
+
+      <button onclick="agregarPedido('Nigiri avocado', 3890)">
+        Nigiri avocado
+      </button>
+
+      <button onclick="agregarPedido('Nigiri ebi', 4490)">
+        Nigiri ebi
+      </button>
+
+      <button onclick="agregarPedido('Nigiri sake', 4690)">
+        Nigiri sake
+      </button>
+
+      <button onclick="agregarPedido('Nigiri Maguro', 4690)">
+        Nigiri Maguro
+      </button>
+
+      <button onclick="agregarPedido('Nigiri Tako', 6290)">
+        Nigiri Tako
+      </button>
+
+    </div>
+
+    <h2>Sashimi</h2>
+
+    <div class="Sashimi">
+
+      <button onclick="agregarPedido('Sashimi atún', 6990)">
+        Sashimi atún (6 cortes)
+      </button>
+
+      <button onclick="agregarPedido('Sashimi salmón', 6990)">
+        Sashimi salmón (6 cortes)
+      </button>
+
+       <button onclick="agregarPedido('Sashimi atún', 9800)">
+        Sashimi atún (9 cortes)
+      </button>
+
+      <button onclick="agregarPedido('Sashimi salmón', 9800)">
+        Sashimi salmón (9 cortes)
+      </button>
+
+
+    </div>
+
+    <h2>Balls</h2>
+
+    <div class="Balls">
+
+      <button onclick="agregarPedido('Cangri balls', 6990)">
+        Cangri balls
+      </button>
+
+      <button onclick="agregarPedido('Sake balls', 6490)">
+        Sake balls
+      </button>
+
+      <button onclick="agregarPedido('Tori balls', 6490)">
+        Tori balls
+      </button>
+
+      <button onclick="agregarPedido('Seta balls', 6990)">
+        Seta balls
+      </button>
+
+    
+
+    </div>
+    </div> 
+
+  </div>
+
+  <!-- tablas -->
+
+  <div class="card">
+
+    <h2>Tablas Familiares</h2>
+
+    <div class="productos">
+
+      <button onclick="agregarPedido('Tabla Individual 20', 9990)">
+        Tabla 20
+      </button>
+
+      <button onclick="agregarPedido('Tabla Familiar 40', 18990)">
+        Tabla 40
+      </button>
+
+      <button onclick="agregarPedido('Tabla Familiar 60', 27990)">
+        Tabla 60
+      </button>
+
+      <button onclick="agregarPedido('Tabla Familiar 80', 36990)">
+        Tabla 80
+      </button>
+
+    </div>
+
+  </div>
+
+  <div class="card">
+
+    <h2>Tablas Especiales</h2>
+
+    <div class="productos">
+
+      <button onclick="agregarPedido('Tabla Fusión', 20490)">
+        Tabla Fusión
+      </button>
+
+      <button onclick="agregarPedido('Tabla Chicken Lovers', 20990)">
+        Tabla Chicken Lovers
+      </button>
+
+      <button onclick="agregarPedido('Tabla Sake Asian', 22990)">
+        Tabla Sake Asian
+      </button>
+
+      <button onclick="agregarPedido('Tabla Love Veggie', 22990)">
+        Tabla Love Veggie
+      </button>
+
+      <button onclick="agregarPedido('Tabla Asian Veggie', 20990)">
+        Tabla Asian Veggie
+      </button>
+
+    </div>
+
+  </div>
+
+   <!-- rolls premium -->
+
+  <div class="card">
+
+    <h2>Rolls premium</h2>
+
+    <div class="productos">
+
+      <button onclick="agregarPedido('Asian rolls', 9990)">
+        Asian rolls
+      </button>
+
+      <button onclick="agregarPedido('Ceviche rolls', 9990)">
+        Ceviche rolls
+      </button>
+
+      <button onclick="agregarPedido('Criollo rolls', 7190)">
+        Criollo rolls
+      </button>
+
+      <button onclick="agregarPedido('Cheese hot', 6490)">
+        Cheese hot
+      </button>
+
+      <button onclick="agregarPedido('Cheese and toasted', 6490)">
+        Cheese and toasted
+      </button>
+
+       <button onclick="agregarPedido('Fuji crunch rolls', 8490)">
+        Fuji crunch rolls
+      </button>
+
+      <button onclick="agregarPedido('Lomo salteado', 8490)">
+        Lomo salteado
+      </button>
+
+      <button onclick="agregarPedido('Masago ebi furay', 6490)">
+        Masago ebi furay
+      </button>
+
+       <button onclick="agregarPedido('Pulpo al olivo', 8490)">
+        Pulpo al olivo
+      </button>
+
+       <button onclick="agregarPedido('Sake tartar rolls', 8490)">
+        Sake tartar rolls
+      </button>
+
+      <button onclick="agregarPedido('Spicy rolls', 7190)">
+        Spicy rolls
+      </button>
+
+      <button onclick="agregarPedido('Triple plaqueta', 8490)">
+        Triple plaqueta
+      </button>
+
+      <button onclick="agregarPedido('Umami rolls', 8490)">
+        Umami rolls
+      </button>
+
+  </div>
+  </div>
+
+  <!-- ROLL -->
+
+  <div class="card">
+
+    <h2>Arma tu rolls con arroz</h2>
+
+    <div class="grid">
+
+      <div>
+        <div>
+
+  <label>Tipo de Roll</label>
+
+ <select id="tipoRoll" onchange="actualizarTextoRoll()">
+
+    <option value="con">
+      Con arroz
+    </option>
+
+    <option value="sin">
+      Sin arroz
+    </option>
+
+  </select>
+
+</div>
+
+        <label>Envoltura</label>
+
+        <select id="envoltura">
+
+          <option value="Panko">
+            Panko
+          </option>
+
+          <option value="Tempura">
+            Tempura
+          </option>
+
+          <option value="Queso">
+            Queso
+          </option>
+
+          <option value="Sésamo">
+            Sésamo
+          </option>
+
+          <option value="Palta">
+            Palta
+          </option>
+
+          <option value="Nori">
+            Nori
+          </option>
+
+          <option value="Masago">
+            Masago (+1500)
+          </option>
+
+          <option value="Atún">
+            Atún (+2500)
+          </option>
+
+          <option value="Salmón">
+            Salmón (+2500)
+          </option>
+
+        </select>
+
+      </div>
+
+      <div>
+
+        <label>Ingrediente Base</label>
+
+        <select id="base">
+
+          <option value="Salmón">
+            Salmón 
+          </option>
+
+          <option value="Camarón">
+            Camarón 
+          </option>
+
+          <option value="Pollo">
+            Pollo
+          </option>
+
+          <option value="Kanikama">
+            Kanikama
+          </option>
+
+          <option value="Atún">
+            Atún
+          </option>
+
+          <option value="Champiñón">
+            Champiñón
+          </option>
+
+          <option value="Lomo">
+            Lomo (+2200)
+          </option>
+
+         <option value="Pulpo">
+            Pulpo (+3290)
+          </option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+    <div class="roll-box">
+
+      <p>
+        <strong id="textoSecundarios">
+  Ingredientes secundarios (elige 2)
+</strong>
+      </p>
+
+      <div class="checkbox-group">
+
+        <label>
+          <input
+          type="checkbox"
+          class="secundario"
+          value="Queso crema">
+
+          Queso crema
+        </label>
+
+        <label>
+          <input
+          type="checkbox"
+          class="secundario"
+          value="Palta">
+
+          Palta 
+        </label>
+
+        <label>
+          <input
+          type="checkbox"
+          class="secundario"
+          value="Pepino">
+
+          Pepino
+        </label>
+
+        <label>
+          <input
+          type="checkbox"
+          class="secundario"
+          value="Ciboulette">
+
+          Ciboulette
+        </label>
+
+        <label>
+          <input
+          type="checkbox"
+          class="secundario"
+          value="Cebollín">
+
+          Cebollín
+        </label>
+
+        <label>
+          <input
+          type="checkbox"
+          class="secundario"
+          value="Palmito">
+
+          Palmito
+        </label>
+
+        <label>
+          <input
+          type="checkbox"
+          class="secundario"
+          value="Pimentón">
+
+          Pimentón
+        </label>
+
+         <label>
+          <input
+          type="checkbox"
+          class="secundario"
+          value="Aceitunas">
+
+          Aceitunas
+        </label>
+
+        <label>
+          <input
+          type="checkbox"
+          class="secundario"
+          value="Ají verde">
+
+          Ají verde
+        </label>
+
+        <label>
+          <input
+          type="checkbox"
+          class="secundario"
+          value="Albahaca">
+
+          Albahaca
+        </label>
+
+         <label>
+          <input
+          type="checkbox"
+          class="secundario"
+          value="Choclito">
+
+          Choclito
+        </label>
+
+         <label>
+          <input
+          type="checkbox"
+          class="secundario"
+          value="Zanahoria">
+
+          Zanahoria
+        </label>
+
+      </div>
+
+    </div>
+
+    <br>
+
+    <button onclick="agregarRollPersonalizado()">
+      Agregar Roll
+    </button>
+
+  </div>
+
+  <!-- GOHAN PERSONALIZADO -->
+
+<div class="card">
+
+  <h2>Arma tu Gohan</h2>
+
+  <div class="grid">
+
+    <div>
+
+      <label>Base 1</label>
+
+      <select id="gohanBase1">
+
+        <option value="Salmón">Salmón</option>
+        <option value="Camarón">Camarón</option>
+        <option value="Pollo">Pollo</option>
+        <option value="Kanikama">Kanikama</option>
+        <option value="Atún">Atún</option>
+        <option value="Champiñón">Champiñón</option>
+
+        <option value="Lomo">
+          Lomo (+2200)
+        </option>
+
+        <option value="Pulpo">
+          Pulpo (+3290)
+        </option>
+
+      </select>
+
+      <label>
+  <input type="checkbox" id="fritoBase1">
+  Frito 
+</label>
+
+    </div>
+
+    <div>
+
+      <label>Base 2</label>
+
+      <select id="gohanBase2">
+
+        <option value="Salmón">Salmón</option>
+        <option value="Camarón">Camarón</option>
+        <option value="Pollo">Pollo</option>
+        <option value="Kanikama">Kanikama</option>
+        <option value="Atún">Atún</option>
+        <option value="Champiñón">Champiñón</option>
+
+        <option value="Lomo">
+          Lomo (+2200)
+        </option>
+
+        <option value="Pulpo">
+          Pulpo (+3290)
+        </option>
+
+      </select>
+
+     <label>
+  <input type="checkbox" id="fritoBase2">
+  Frito
+</label>
+
+  </div>
+  </div>
+
+  <div class="roll-box">
+
+    <p>
+      <strong>
+        Ingredientes secundarios (elige 3)
+      </strong>
+    </p>
+
+    <div class="checkbox-group">
+
+       <label>
+          <input
+          type="checkbox"
+          class="gohan-secundario"
+          value="Queso crema">
+
+          Queso crema
+        </label>
+
+        <label>
+          <input
+          type="checkbox"
+          class="gohan-secundario"
+          value="Palta">
+
+          Palta 
+        </label>
+
+        <label>
+          <input
+          type="checkbox"
+          class="gohan-secundario"
+          value="Pepino">
+
+          Pepino
+        </label>
+
+        <label>
+          <input
+          type="checkbox"
+          class="gohan-secundario"
+          value="Ciboulette">
+
+          Ciboulette
+        </label>
+
+        <label>
+          <input
+          type="checkbox"
+          class="gohan-secundario"
+          value="Cebollín">
+
+          Cebollín
+        </label>
+
+        <label>
+          <input
+          type="checkbox"
+          class="gohan-secundario"
+          value="Palmito">
+
+          Palmito
+        </label>
+
+        <label>
+          <input
+          type="checkbox"
+          class="gohan-secundario"
+          value="Pimentón">
+
+          Pimentón
+        </label>
+
+         <label>
+          <input
+          type="checkbox"
+          class="gohan-secundario"
+          value="Aceitunas">
+
+          Aceitunas
+        </label>
+
+        <label>
+          <input
+          type="checkbox"
+          class="gohan-secundario"
+          value="Ají verde">
+
+          Ají verde
+        </label>
+
+        <label>
+          <input
+          type="checkbox"
+          class="gohan-secundario"
+          value="Albahaca">
+
+          Albahaca
+        </label>
+
+         <label>
+          <input
+          type="checkbox"
+          class="gohan-secundario"
+          value="Choclito">
+
+          Choclito
+        </label>
+
+         <label>
+          <input
+          type="checkbox"
+          class="gohan-secundario"
+          value="Zanahoria">
+
+          Zanahoria
+        </label>
+        </div>
+</div>
+
+  <br>
+
+  <button onclick="agregarGohan()">
+    Agregar Gohan
+  </button>
+
+
+</div>
+
+<div class="card">
+
+  <h2>Arma tu SushiBurger</h2>
+
+  <div class="grid">
+
+    <!-- BASE 1 -->
+
+    <div>
+
+      <label>Proteína 1</label>
+
+      <select id="burgerBase1">
+
+        <option value="Salmón">Salmón</option>
+        <option value="Camarón">Camarón</option>
+        <option value="Pollo">Pollo</option>
+        <option value="Kanikama">Kanikama</option>
+        <option value="Atún">Atún</option>
+        <option value="Champiñón">Champiñón</option>
+
+        <option value="Lomo">
+          Lomo (+2200)
+        </option>
+
+        <option value="Pulpo">
+          Pulpo (+3290)
+        </option>
+
+      </select>
+
+      <label>
+        <input type="checkbox" id="burgerFrito1">
+        Frito (+1000)
+      </label>
+
+    </div>
+
+    <!-- BASE 2 -->
+
+    <div>
+
+      <label>Proteína 2</label>
+
+      <select id="burgerBase2">
+
+       <option value="Salmón">Salmón</option>
+        <option value="Camarón">Camarón</option>
+        <option value="Pollo">Pollo</option>
+        <option value="Kanikama">Kanikama</option>
+        <option value="Atún">Atún</option>
+        <option value="Champiñón">Champiñón</option>
+
+        <option value="Lomo">
+          Lomo (+2200)
+        </option>
+
+        <option value="Pulpo">
+          Pulpo (+3290)
+        </option>
+
+      </select>
+
+      <label>
+        <input type="checkbox" id="burgerFrito2">
+        Frito (+1000)
+      </label>
+
+    </div>
+
+  </div>
+
+  <!-- secundarios -->
+
+  <div class="roll-box">
+
+    <p>
+      <strong>
+        Ingredientes secundarios (elige 3)
+      </strong>
+    </p>
+
+    <div class="checkbox-group">
+
+      <label>
+          <input
+          type="checkbox"
+          class="burger-secundario"
+          value="Queso crema">
+
+          Queso crema
+        </label>
+
+        <label>
+          <input
+          type="checkbox"
+          class="burger-secundario"
+          value="Palta">
+
+          Palta 
+        </label>
+
+        <label>
+          <input
+          type="checkbox"
+          class="burger-secundario"
+          value="Pepino">
+
+          Pepino
+        </label>
+
+        <label>
+          <input
+          type="checkbox"
+          class="burger-secundario"
+          value="Ciboulette">
+
+          Ciboulette
+        </label>
+
+        <label>
+          <input
+          type="checkbox"
+          class="burger-secundario"
+          value="Cebollín">
+
+          Cebollín
+        </label>
+
+        <label>
+          <input
+          type="checkbox"
+          class="burger-secundario"
+          value="Palmito">
+
+          Palmito
+        </label>
+
+        <label>
+          <input
+          type="checkbox"
+          class="burger-secundario"
+          value="Pimentón">
+
+          Pimentón
+        </label>
+
+         <label>
+          <input
+          type="checkbox"
+          class="burger-secundario"
+          value="Aceitunas">
+
+          Aceitunas
+        </label>
+
+        <label>
+          <input
+          type="checkbox"
+          class="burger-secundario"
+          value="Ají verde">
+
+          Ají verde
+        </label>
+
+        <label>
+          <input
+          type="checkbox"
+          class="burger-secundario"
+          value="Albahaca">
+
+          Albahaca
+        </label>
+
+         <label>
+          <input
+          type="checkbox"
+          class="burger-secundario"
+          value="Choclito">
+
+          Choclito
+        </label>
+
+         <label>
+          <input
+          type="checkbox"
+          class="burger-secundario"
+          value="Zanahoria">
+
+          Zanahoria
+        </label>
+
+    </div>
+
+  </div>
+
+  <br>
+
+  <button onclick="agregarBurger()">
+    Agregar SushiBurger
+  </button>
+
+</div>
+  <!-- OBS -->
+
+  <div class="card">
+
+    <h2>Observación</h2>
+
+    <input
+    type="text"
+    id="observacion"
+    placeholder="Observación opcional">
+
+  </div>
+
+  <!-- RESUMEN -->
+
+  <div class="card">
+
+    <h2>Resumen pedido</h2>
+
+    <ul id="lista"></ul>
+
+    <h2 id="total">
+      Total: $0
+    </h2>
+
+    <div class="acciones">
+
+      <button onclick="enviarPedido()">
+        Enviar Pedido
+      </button>
+
+      <button
+      class="btn-danger"
+      onclick="vaciarPedido()">
+
+        Vaciar Pedido
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
 
 <script type="module">
-
-// FIREBASE
 
 import { initializeApp }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -173,32 +1213,62 @@ import {
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-
-// CONFIG FIREBASE
-
 const firebaseConfig = {
+
   apiKey: "AIzaSyDEAz2DKAOvHOZWCbrK1YEH-9rGHSRDTHY",
   authDomain: "asian-sushi-7095b.firebaseapp.com",
   projectId: "asian-sushi-7095b",
- storageBucket: "asian-sushi-7095b.appspot.com",
+  storageBucket: "asian-sushi-7095b.appspot.com",
   messagingSenderId: "863718936530",
   appId: "1:863718936530:web:c518f95d029d1245c2020b"
+
 };
-
-
-// INICIAR FIREBASE
 
 const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
 
-
-// PEDIDO
-
 window.pedido = [];
 
+document
+  .getElementById("tipoRoll")
+  .addEventListener("change", function(){
 
-// AGREGAR PEDIDO
+    let texto =
+      document.getElementById("textoSecundarios");
+
+    if(this.value === "sin"){
+
+      texto.innerText =
+        "Ingredientes secundarios (mínimo 1 y máximo 4)";
+
+    } else {
+
+      texto.innerText =
+        "Ingredientes secundarios (mínimo 1 y máximo 2)";
+    }
+
+});
+
+window.actualizarTextoRoll = function(){
+
+  let tipoRoll =
+    document.getElementById("tipoRoll").value;
+
+  let texto =
+    document.getElementById("textoSecundarios");
+
+  if(tipoRoll === "sin"){
+
+    texto.innerText =
+      "Ingredientes secundarios (mínimo 1 y máximo 4)";
+
+  } else {
+
+    texto.innerText =
+      "Ingredientes secundarios (mínimo 1 y máximo 2)";
+  }
+}
 
 window.agregarPedido = function(producto, precio){
 
@@ -212,10 +1282,22 @@ window.agregarPedido = function(producto, precio){
     item += " | Obs: " + observacion;
   }
 
-  pedido.push({
-    nombre: item,
-    precio: precio
-  });
+  let existente =
+    pedido.find(p => p.nombre === item);
+
+  if(existente){
+
+    existente.cantidad += 1;
+
+  } else {
+
+    pedido.push({
+      nombre: item,
+      precio: precio,
+      cantidad: 1
+    });
+
+  }
 
   renderizarPedido();
 
@@ -224,24 +1306,290 @@ window.agregarPedido = function(producto, precio){
   document.getElementById("observacion").value = "";
 }
 
-
-// ROLL PERSONALIZADO
-
 window.agregarRollPersonalizado = function(){
 
-  let roll =
-    document.getElementById("rollPersonalizado").value;
+  let tipoRoll =
+    document.getElementById("tipoRoll").value;
 
-  if(roll.trim() !== ""){
+  let envoltura =
+    document.getElementById("envoltura").value;
 
-    agregarPedido("Roll: " + roll, 5490);
+  let base =
+    document.getElementById("base").value;
 
-    document.getElementById("rollPersonalizado").value = "";
+  let secundarios =
+    Array.from(
+      document.querySelectorAll(".secundario:checked")
+    ).map(item => item.value);
+
+  // límites
+
+  let maximos =
+    tipoRoll === "sin" ? 20 : 2;
+
+  // mínimo 1
+
+  if(secundarios.length < 1){
+
+    alert("Debes escoger mínimo 1 ingrediente secundario");
+
+    return;
   }
+
+  // máximo permitido
+
+  if(secundarios.length > maximos){
+
+    alert(
+      tipoRoll === "sin"
+      ? "Máximo 20 ingredientes secundarios"
+      : "El roll con arroz permite máximo 2 ingredientes secundarios"
+    );
+
+    return;
+  }
+
+  // precios base
+
+  let precio =
+    tipoRoll === "sin"
+    ? 6790
+    : 5490;
+
+  // extras envoltura
+
+  if(envoltura === "Masago"){
+    precio += 1500;
+  }
+
+  if(envoltura === "Atún"){
+    precio += 2500;
+  }
+
+  if(envoltura === "Salmón"){
+    precio += 2500;
+  }
+
+  // extras proteína base
+
+  if(base === "Lomo"){
+    precio += 2200;
+  }
+
+  if(base === "Pulpo"){
+    precio += 3290;
+  }
+
+  // extras secundarios
+  // SOLO DESDE EL 5TO EN SIN ARROZ
+
+  let extrasSecundarios = 0;
+
+  if(tipoRoll === "sin" && secundarios.length > 4){
+
+    extrasSecundarios =
+      (secundarios.length - 4) * 990;
+
+    precio += extrasSecundarios;
+  }
+
+  // nombre
+
+  let nombreRoll =
+    `Roll ${tipoRoll === "sin" ? "sin arroz" : "con arroz"} | ${envoltura} | ${base} + ${secundarios.join(" + ")}`;
+
+  // mostrar extras
+
+  if(extrasSecundarios > 0){
+
+    nombreRoll +=
+      ` | Extras secundarios: +$${extrasSecundarios}`;
+  }
+
+  // agregar
+
+  agregarPedido(nombreRoll, precio);
+
+  // limpiar checks
+
+  document
+    .querySelectorAll(".secundario")
+    .forEach(item => item.checked = false);
+
+  actualizarTotal();
 }
 
+window.agregarGohan = function(){
 
-// ELIMINAR
+  let base1 =
+    document.getElementById("gohanBase1").value;
+
+  let base2 =
+    document.getElementById("gohanBase2").value;
+
+  let frito1 =
+    document.getElementById("fritoBase1").checked;
+
+  let frito2 =
+    document.getElementById("fritoBase2").checked;
+
+  let secundarios =
+    Array.from(
+      document.querySelectorAll(".gohan-secundario:checked")
+    ).map(item => item.value);
+
+  // mínimo 3 secundarios
+
+  if(secundarios.length < 1){
+
+    alert("Debes escoger mínimo 1 ingredientes secundarios");
+
+    return;
+  }
+
+  let precio = 7990;
+
+  // extras secundarios
+  // desde el 4to en adelante
+
+  if(secundarios.length > 3){
+
+    let extras = secundarios.length - 3;
+
+    precio += extras * 990;
+  }
+
+  // extras base 1
+
+  if(base1 === "Lomo"){
+    precio += 2200;
+  }
+
+  if(base1 === "Pulpo"){
+    precio += 3290;
+  }
+
+  // extras base 2
+
+  if(base2 === "Lomo"){
+    precio += 2200;
+  }
+
+  if(base2 === "Pulpo"){
+    precio += 3290;
+  }
+
+  let nombreGohan =
+    `Gohan | ${base1}${frito1 ? " Frito" : ""} + ${base2}${frito2 ? " Frito" : ""} | ${secundarios.join(" + ")}`;
+
+  // mostrar extras
+
+  let extrasTexto = [];
+
+  if(secundarios.length > 3){
+
+    extrasTexto.push(
+      `Secundarios extra: +$${(secundarios.length - 3) * 990}`
+    );
+  }
+
+  if(precio > 7990){
+
+    nombreGohan += ` (${extrasTexto.join(" | ")})`;
+  }
+
+  agregarPedido(nombreGohan, precio);
+
+  document
+    .querySelectorAll(".gohan-secundario")
+    .forEach(item => item.checked = false);
+}
+
+window.agregarBurger = function(){
+
+  let base1 =
+    document.getElementById("burgerBase1").value;
+
+  let base2 =
+    document.getElementById("burgerBase2").value;
+
+  let frito1 =
+    document.getElementById("burgerFrito1").checked;
+
+  let frito2 =
+    document.getElementById("burgerFrito2").checked;
+
+  let secundarios =
+    Array.from(
+      document.querySelectorAll(".burger-secundario:checked")
+    ).map(item => item.value);
+
+  // mínimo 3 secundarios
+
+  if(secundarios.length < 1){
+
+    alert("Debes escoger mínimo 1 ingredientes secundarios");
+
+    return;
+  }
+
+  let precio = 8900;
+
+  // extras secundarios
+  // desde el 4to en adelante
+
+  if(secundarios.length > 3){
+
+    let extras = secundarios.length - 3;
+
+    precio += extras * 990;
+  }
+
+  // extras base 1
+
+  if(base1 === "Lomo"){
+    precio += 2200;
+  }
+
+  if(base1 === "Pulpo"){
+    precio += 3290;
+  }
+
+  // extras base 2
+
+  if(base2 === "Lomo"){
+    precio += 2200;
+  }
+
+  if(base2 === "Pulpo"){
+    precio += 3290;
+  }
+
+  let nombreBurger =
+    `SushiBurger | ${base1}${frito1 ? " Frito" : ""} + ${base2}${frito2 ? " Frito" : ""} | ${secundarios.join(" + ")}`;
+
+  // mostrar extras
+
+  let extrasTexto = [];
+
+  if(secundarios.length > 3){
+
+    extrasTexto.push(
+      `Secundarios extra: +$${(secundarios.length - 3) * 990}`
+    );
+  }
+
+  if(precio > 8900){
+
+    nombreBurger += ` (${extrasTexto.join(" | ")})`;
+  }
+
+  agregarPedido(nombreBurger, precio);
+
+  document
+    .querySelectorAll(".burger-secundario")
+    .forEach(item => item.checked = false);
+}
 
 window.eliminarProducto = function(index){
 
@@ -251,33 +1599,6 @@ window.eliminarProducto = function(index){
 
   actualizarTotal();
 }
-
-
-// TOTAL
-
-window.actualizarTotal = function(){
-
-  let subtotal = 0;
-
-  pedido.forEach(item => {
-    subtotal += item.precio;
-  });
-
-  let direccionData =
-    document.getElementById("direccion")
-    .value.split("|");
-
-  let delivery =
-    parseInt(direccionData[1]);
-
-  let total = subtotal + delivery;
-
-  document.getElementById("total").innerText =
-    "Total: $" + total;
-}
-
-
-// RENDER
 
 window.renderizarPedido = function(){
 
@@ -289,20 +1610,17 @@ window.renderizarPedido = function(){
   pedido.forEach((item, index) => {
 
     lista.innerHTML += `
-      <li style="margin-bottom:10px;">
+      <li>
 
-        ${item.nombre} - $${item.precio}
+        <div>
+          ${item.cantidad} x ${item.nombre}
+          <br>
+          <strong>$${item.precio * item.cantidad}</strong>
+        </div>
 
         <button
-          onclick="eliminarProducto(${index})"
-          style="
-            background:red;
-            margin-left:10px;
-            padding:5px 10px;
-            border:none;
-            border-radius:5px;
-            color:white;
-          ">
+          class="btn-danger"
+          onclick="eliminarProducto(${index})">
 
           X
 
@@ -310,11 +1628,9 @@ window.renderizarPedido = function(){
 
       </li>
     `;
+
   });
 }
-
-
-// VACIAR
 
 window.vaciarPedido = function(){
 
@@ -325,24 +1641,29 @@ window.vaciarPedido = function(){
   actualizarTotal();
 }
 
+window.actualizarTotal = function(){
 
-// ENVIAR A FIREBASE
+  let subtotal =
+    pedido.reduce((sum, item) =>
+      sum + (item.precio * item.cantidad), 0);
+
+  let direccionData =
+    document.getElementById("direccion")
+    .value.split("|");
+
+  let delivery =
+    parseInt(direccionData[1]) || 0;
+
+  let total =
+    subtotal + delivery;
+
+  document.getElementById("total").innerText =
+    `Total: $${total.toLocaleString("es-CL")}`;
+}
 
 window.enviarPedido = async function(){
 
   try {
-
-    let cliente =
-      document.getElementById("cliente").value;
-
-    let telefono =
-      document.getElementById("telefono").value;
-
-    let palitos =
-      document.getElementById("Palitos").value;
-
-    let salsas =
-      document.getElementById("Salsas").value;
 
     let direccionData =
       document.getElementById("direccion")
@@ -351,32 +1672,62 @@ window.enviarPedido = async function(){
     let direccion =
       direccionData[0];
 
-    let delivery =
-      parseInt(direccionData[1]);
+    if(
+      direccion !== "Retiro" &&
+      document.getElementById("direccionTexto").value.trim() === ""
+    ){
 
-    let direccionTexto =
-      document.getElementById("direccionTexto").value;
+      alert("Debes escribir la dirección");
+
+      return;
+    }
 
     let subtotal =
       pedido.reduce((sum, item) =>
-      sum + item.precio, 0);
+      sum + (item.precio * item.cantidad), 0);
+
+    let delivery =
+      parseInt(direccionData[1]);
 
     let total =
       subtotal + delivery;
 
     let datos = {
 
-      cliente: cliente,
+      numeroPedido:
+        Math.floor(Math.random() * 9000) + 1000,
 
-      telefono: telefono,
+      cliente:
+        document.getElementById("cliente").value,
 
-      palitos: palitos,
+      telefono:
+        document.getElementById("telefono").value,
 
-      salsas: salsas,
+      metodoPago:
+        document.getElementById("metodoPago").value,
+
+      vuelto:
+        document.getElementById("vuelto").value,
+
+      palitos:
+        document.getElementById("Palitos").value,
+
+      salsas:
+        document.getElementById("Salsas").value,
+
+      horario:
+        document.getElementById("horario").value,
+
+      jengibre:
+        document.getElementById("jengibre").checked,
+
+      wasabi:
+        document.getElementById("wasabi").checked,
 
       direccion: direccion,
 
-      direccionTexto: direccionTexto,
+      direccionTexto:
+        document.getElementById("direccionTexto").value,
 
       delivery: delivery,
 
@@ -405,7 +1756,6 @@ window.enviarPedido = async function(){
 
     alert("Error al enviar pedido");
   }
-
 }
 
 </script>
