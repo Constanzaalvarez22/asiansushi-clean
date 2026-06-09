@@ -274,6 +274,127 @@
 
   <div class="card">
 
+ <h2 onclick="toggleSeccion('seccionOfertas')">
+  Ofertas 
+</h2>
+
+<div id="seccionOfertas" style="display:none;">
+
+    <div class="productos">
+
+    <button onclick="agregarPedido('Asian Rolls 20% OFF', 7992)">
+      Asian Rolls 20% OFF - $7.992
+    </button>
+
+    <button onclick="agregarPedido('Ceviche Rolls 20% OFF', 7992)">
+      Ceviche Rolls 20% OFF - $7.992
+    </button>
+
+    <button onclick="agregarPedido('Fuji Crunch 20% OFF', 6792)">
+      Fuji Crunch 20% OFF - $6.792
+    </button>
+
+    <button onclick="agregarPedido('Triple Plaqueta 20% OFF', 6792)">
+      Triple Plaqueta 20% OFF - $6.792
+    </button>
+
+    <button onclick="agregarPedido('Spicy 15% OFF', 6112)">
+      Spicy 15% OFF - $6.112
+    </button>
+
+    <button onclick="agregarPedido('Cheese Hot 15% OFF', 5517)">
+      Cheese Hot 15% OFF - $5.517
+    </button>
+
+    <button onclick="agregarPedido('Camarones Panko 15% OFF', 4667)">
+      Camarones Panko 15% OFF - $4.667
+    </button>
+
+    <button onclick="agregarPedido('Seta Balls 25% OFF', 5243)">
+      Seta Balls 25% OFF - $5.243
+    </button>
+
+  </div>
+
+  <h3 style="margin-top:15px;">
+    Promo 2 Burger - $13.990
+  </h3>
+
+  <label>Burger 1</label>
+
+  <select id="burgerPromo1">
+     <option value="">Seleccionar</option>
+    <option value="OPCIÓN 1">OPCIÓN 1</option>
+    <option value="OPCIÓN 2">OPCIÓN 2</option>
+    <option value="OPCIÓN 3">OPCIÓN 3</option>
+    <option value="OPCIÓN 4">OPCIÓN 4</option>
+  </select>
+
+  <br><br>
+
+  <label>Burger 2</label>
+
+  <select id="burgerPromo2">
+     <option value="">Seleccionar</option>
+    <option value="OPCIÓN 1">OPCIÓN 1</option>
+    <option value="OPCIÓN 2">OPCIÓN 2</option>
+    <option value="OPCIÓN 3">OPCIÓN 3</option>
+    <option value="OPCIÓN 4">OPCIÓN 4</option>
+  </select>
+
+  <br><br>
+
+  <button onclick="agregarPromoBurger()">
+    Agregar Promo Burger
+  </button>
+
+
+<h3 style="margin-top:15px;">
+   Promo Handrolls
+</h3>
+
+<label>Handroll 1</label>
+
+<select id="handroll1">
+   <option value="">Seleccionar</option>
+  <option value="OPCIÓN 1">OPCIÓN 1</option>
+  <option value="OPCIÓN 2">OPCIÓN 2</option>
+  <option value="OPCIÓN 3">OPCIÓN 3</option>
+</select>
+
+<br><br>
+
+<label>Handroll 2 (opcional)</label>
+
+<select id="handroll2">
+   <option value="">Seleccionar</option>
+    <option value="OPCIÓN 1">OPCIÓN 1</option>
+  <option value="OPCIÓN 2">OPCIÓN 2</option>
+  <option value="OPCIÓN 3">OPCIÓN 3</option>
+</select>
+
+<br><br>
+
+<label>Handroll 3 (opcional)</label>
+
+<select id="handroll3">
+   <option value="">Seleccionar</option>
+   <option value="OPCIÓN 1">OPCIÓN 1</option>
+  <option value="OPCIÓN 2">OPCIÓN 2</option>
+  <option value="OPCIÓN 3">OPCIÓN 3</option>
+</select>
+
+<br><br>
+
+<button onclick="agregarPromoHandroll()">
+  Agregar Handrolls
+</button>
+
+</div>
+</div>
+
+  <div class="card">
+
     <h2>Proteínas rebosadas</h2>
 
     <div class="Proteínas">
@@ -388,33 +509,64 @@
     </div> 
 
   </div>
+  
 
   <!-- tablas -->
-
-  <div class="card">
+    <div class="card">
 
     <h2>Tablas Familiares</h2>
 
-    <div class="productos">
 
-      <button onclick="agregarPedido('Tabla Individual 20', 9990)">
-        Tabla 20
-      </button>
+<div class="productos">
 
-      <button onclick="agregarPedido('Tabla Familiar 40', 18990)">
-        Tabla 40
-      </button>
+  <button onclick="agregarTabla('Tabla Individual 20', 9990)">
+    Tabla 20
+  </button>
 
-      <button onclick="agregarPedido('Tabla Familiar 60', 27990)">
-        Tabla 60
-      </button>
+  <button onclick="agregarTabla('Tabla Familiar 40', 18990)">
+    Tabla 40
+  </button>
 
-      <button onclick="agregarPedido('Tabla Familiar 80', 36990)">
-        Tabla 80
-      </button>
+  <button onclick="agregarTabla('Tabla Familiar 60', 27990)">
+    Tabla 60
+  </button>
 
-    </div>
+  <button onclick="agregarTabla('Tabla Familiar 80', 36990)">
+    Tabla 80
+  </button>
 
+  <label style="display:block; margin-bottom:8px;">
+  <input type="checkbox" id="tablaCambio1">
+  1 cambio (+990)
+</label>
+
+<label style="display:block; margin-bottom:8px;">
+  <input type="checkbox" id="tablaCambio2">
+  2 cambios (+1980)
+</label>
+
+<label style="display:block; margin-bottom:8px;">
+  <input type="checkbox" id="tablaEmpanizar">
+  Plaqueta panko (+490)
+</label>
+
+<label style="display:block; margin-bottom:8px;">
+  <input type="checkbox" id="tablaPlaqueta">
+  Plaqueta queso/palta (+1500)
+</label>
+
+<br>
+
+<label>Detalle cambios</label>
+
+<textarea
+  id="detalleTabla"
+  placeholder="Ej: Kani por camarón"
+  rows="3"
+></textarea>
+
+<br><br>
+</div>
   </div>
 
   <div class="card">
@@ -443,116 +595,147 @@
         Tabla Asian Veggie
       </button>
 
+      <label style="display:block; margin-bottom:8px;">
+  <input type="checkbox" id="tablaCambio1">
+  1 cambio (+990)
+</label>
+
+<label style="display:block; margin-bottom:8px;">
+  <input type="checkbox" id="tablaCambio2">
+  2 cambios (+1980)
+</label>
+
+<label style="display:block; margin-bottom:8px;">
+  <input type="checkbox" id="tablaEmpanizar">
+  Plaqueta panko (+490)
+</label>
+
+<label style="display:block; margin-bottom:8px;">
+  <input type="checkbox" id="tablaPlaqueta">
+  Plaqueta queso/palta (+1500)
+</label>
+
+<br>
+
+<label>Detalle cambios</label>
+
+<textarea
+  id="detalleTabla"
+  placeholder="Ej: Kani por camarón"
+  rows="3"
+></textarea>
+
+<br><br>
+
     </div>
 
   </div>
 
    <!-- rolls premium -->
-<div class="card">
 
-  <h2>🔥 Rolls premium</h2>
+  <div class="card">
 
-  <!-- ACTIVAR OFERTAS -->
+    <h2>Rolls premium</h2>
 
-  <label
-    style="
-      display:flex;
-      align-items:center;
-      gap:10px;
-      margin-bottom:18px;
-      background:#fff3cd;
-      padding:12px;
-      border-radius:12px;
-      font-weight:bold;
-    ">
+    <div class="productos">
 
-    <input
-      type="checkbox"
-      id="modoOfertas">
+      <button onclick="agregarPedido('Asian rolls', 9990)">
+        Asian rolls
+      </button>
 
-    Activar ofertas premium
+      <button onclick="agregarPedido('Ceviche rolls', 9990)">
+        Ceviche rolls
+      </button>
 
-  </label>
+      <button onclick="agregarPedido('Criollo rolls', 7190)">
+        Criollo rolls
+      </button>
 
-  <div class="productos">
+      <button onclick="agregarPedido('Cheese hot', 6490)">
+        Cheese hot
+      </button>
 
-    <button onclick="agregarPremium('Asian rolls', 9990)">
-      Asian rolls
-    </button>
+      <button onclick="agregarPedido('Cheese and toasted', 6490)">
+        Cheese and toasted
+      </button>
 
-    <button onclick="agregarPremium('Ceviche rolls', 9990)">
-      Ceviche rolls
-    </button>
+       <button onclick="agregarPedido('Fuji crunch rolls', 8490)">
+        Fuji crunch rolls
+      </button>
 
-    <button onclick="agregarPremium('Criollo rolls', 7190)">
-      Criollo rolls
-    </button>
+      <button onclick="agregarPedido('Lomo salteado', 8490)">
+        Lomo salteado
+      </button>
 
-    <button onclick="agregarPremium('Cheese hot', 6490)">
-      Cheese hot
-    </button>
+      <button onclick="agregarPedido('Masago ebi furay', 6490)">
+        Masago ebi furay
+      </button>
 
-    <button onclick="agregarPremium('Cheese and toasted', 6490)">
-      Cheese and toasted
-    </button>
+       <button onclick="agregarPedido('Pulpo al olivo', 8490)">
+        Pulpo al olivo
+      </button>
 
-    <button onclick="agregarPremium('Fuji crunch rolls', 8490)">
-      Fuji crunch rolls
-    </button>
+       <button onclick="agregarPedido('Sake tartar rolls', 8490)">
+        Sake tartar rolls
+      </button>
 
-    <button onclick="agregarPremium('Lomo salteado', 8490)">
-      Lomo salteado
-    </button>
+      <button onclick="agregarPedido('Spicy rolls', 7190)">
+        Spicy rolls
+      </button>
 
-    <button onclick="agregarPremium('Masago ebi furay', 6490)">
-      Masago ebi furay
-    </button>
+      <button onclick="agregarPedido('Triple plaqueta', 8490)">
+        Triple plaqueta
+      </button>
 
-    <button onclick="agregarPremium('Pulpo al olivo', 8490)">
-      Pulpo al olivo
-    </button>
+      <button onclick="agregarPedido('Umami rolls', 8490)">
+        Umami rolls
+      </button>
 
-    <button onclick="agregarPremium('Sake tartar rolls', 8490)">
-      Sake tartar rolls
-    </button>
+      <label style="display:block; margin-bottom:8px;">
+  <input type="checkbox" id="tablaCambio1">
+  1 cambio (+990)
+</label>
 
-    <button onclick="agregarPremium('Spicy rolls', 7190)">
-      Spicy rolls
-    </button>
+<label style="display:block; margin-bottom:8px;">
+  <input type="checkbox" id="tablaEmpanizar">
+  Bandeja extra (+490)
+</label>
 
-    <button onclick="agregarPremium('Triple plaqueta', 8490)">
-      Triple plaqueta
-    </button>
+<br>
 
-    <button onclick="agregarPremium('Umami rolls', 8490)">
-      Umami rolls
-    </button>
+<label>Detalle cambios</label>
+
+<textarea
+  id="detalleTabla"
+  placeholder="Ej: Kani por camarón"
+  rows="3"
+></textarea>
+
+<br><br>
 
   </div>
-
-</div>
+  </div>
 
   <!-- ROLL -->
 
-<div class="card">
+ <div class="card">
 
-  <h2>🍣 Arma tu Roll</h2>
+  <h2
+    onclick="toggleSeccion('seccionRoll')"
+    style="cursor:pointer; user-select:none;"
+  >
+    Arma tu Roll ▼
+  </h2>
+
+  <div id="seccionRoll" style="display:none;">
 
   <div class="grid">
 
-    <!-- COLUMNA IZQUIERDA -->
-
     <div>
 
-      <!-- TIPO -->
+      <label>Tipo de Roll</label>
 
-      <label>
-        Tipo de Roll
-      </label>
-
-      <select
-        id="tipoRoll"
-        onchange="actualizarTextoRoll()">
+      <select id="tipoRoll" onchange="actualizarTextoRoll()">
 
         <option value="con">
           Con arroz
@@ -562,358 +745,149 @@
           Sin arroz
         </option>
 
+         <option value="hosomaki">
+          Hosomaki
+        </option>
+
       </select>
 
-      <!-- ENVOLTURA -->
+      <br><br>
 
-      <label
-        style="
-          margin-top:18px;
-          display:block;
-        ">
-
-        Envoltura
-
-      </label>
+      <label>Envoltura</label>
 
       <select id="envoltura">
 
-        <option value="Panko">
-          Panko
-        </option>
-
-        <option value="Tempura">
-          Tempura
-        </option>
-
-        <option value="Queso">
-          Queso
-        </option>
-
-        <option value="Sésamo">
-          Sésamo
-        </option>
-
-        <option value="Palta">
-          Palta
-        </option>
-
-        <option value="Nori">
-          Nori
-        </option>
-
-        <option value="Masago">
-          Masago (+1500)
-        </option>
-
-        <option value="Atún">
-          Atún (+2500)
-        </option>
-
-        <option value="Salmón">
-          Salmón (+2500)
-        </option>
+        <option value="Panko">Panko</option>
+        <option value="Tempura">Tempura</option>
+        <option value="Queso">Queso</option>
+        <option value="Sésamo">Sésamo</option>
+        <option value="Palta">Palta</option>
+        <option value="Nori">Nori</option>
+        <option value="Masago">Masago (+1500)</option>
+        <option value="Atún">Atún (+2500)</option>
+        <option value="Salmón">Salmón (+2500)</option>
 
       </select>
 
     </div>
 
-    <!-- COLUMNA DERECHA -->
-
     <div>
 
-      <!-- BASE PRINCIPAL -->
-
-      <label>
-        Ingrediente Base
-      </label>
+      <label>Base principal</label>
 
       <select id="base">
 
-        <option value="Salmón">
-          Salmón
+        <option value="">
+          Sin base
         </option>
 
-        <option value="Camarón">
-          Camarón
-        </option>
-
-        <option value="Pollo">
-          Pollo
-        </option>
-
-        <option value="Kanikama">
-          Kanikama
-        </option>
-
-        <option value="Atún">
-          Atún
-        </option>
-
-        <option value="Champiñón">
-          Champiñón
-        </option>
-
-        <option value="Lomo">
-          Lomo (+2200)
-        </option>
-
-        <option value="Pulpo">
-          Pulpo (+3290)
-        </option>
+        <option value="Salmón">Salmón</option>
+        <option value="Camarón">Camarón</option>
+        <option value="Pollo">Pollo</option>
+        <option value="Kanikama">Kanikama</option>
+        <option value="Atún">Atún</option>
+        <option value="Champiñón">Champiñón</option>
+        <option value="Lomo">Lomo (+2200)</option>
+        <option value="Pulpo">Pulpo (+3290)</option>
 
       </select>
 
-      <!-- FRITO BASE -->
-
-      <label
-        style="
-          margin-top:12px;
-          display:flex;
-          align-items:center;
-          gap:10px;
-          background:#f5f5f5;
-          padding:10px;
-          border-radius:10px;
-        ">
-
-        <input
-          type="checkbox"
-          id="fritoBase">
-
-        Base principal frita (+990)
-
+      <label style="margin-top:8px; display:block;">
+        <input type="checkbox" id="baseFrita">
+        Base frita (+990)
       </label>
 
-      <!-- BASE EXTRA -->
+      <br>
 
-      <label
-        style="
-          margin-top:18px;
-          display:block;
-        ">
-
-        Base extra
-
-      </label>
+      <label>Base extra</label>
 
       <select id="baseExtra">
 
         <option value="">
-          Sin extra
+          Sin base extra
         </option>
 
-        <option value="Salmón">
-          Salmón (+990)
-        </option>
-
-        <option value="Camarón">
-          Camarón (+990)
-        </option>
-
-        <option value="Pollo">
-          Pollo (+990)
-        </option>
-
-        <option value="Kanikama">
-          Kanikama (+990)
-        </option>
-
-        <option value="Champiñón">
-          Champiñón (+990)
-        </option>
-
-        <option value="Atún">
-          Atún (+1490)
-        </option>
-
-        <option value="Lomo">
-          Lomo (+2200)
-        </option>
-
-        <option value="Pulpo">
-          Pulpo (+3290)
-        </option>
+        <option value="Salmón">Salmón</option>
+        <option value="Camarón">Camarón</option>
+        <option value="Pollo">Pollo</option>
+        <option value="Kanikama">Kanikama</option>
+        <option value="Atún">Atún</option>
+        <option value="Champiñón">Champiñón</option>
+        <option value="Lomo">Lomo (+2200)</option>
+        <option value="Pulpo">Pulpo (+3290)</option>
 
       </select>
 
-      <!-- FRITO BASE EXTRA -->
-
-      <label
-        style="
-          margin-top:12px;
-          display:flex;
-          align-items:center;
-          gap:10px;
-          background:#f5f5f5;
-          padding:10px;
-          border-radius:10px;
-        ">
-
-        <input
-          type="checkbox"
-          id="fritoBaseExtra">
-
+      <label style="margin-top:8px; display:block;">
+        <input type="checkbox" id="baseExtraFrita">
         Base extra frita (+990)
-
       </label>
 
     </div>
 
   </div>
-
-  <!-- INGREDIENTES SECUNDARIOS -->
 
   <div class="roll-box">
 
     <p>
-
       <strong id="textoSecundarios">
-        Ingredientes secundarios
-        (elige 2)
+        Selecciona los ingredientes secundarios
       </strong>
-
     </p>
 
     <div class="checkbox-group">
 
-      <label>
-        <input
-          type="checkbox"
-          class="secundario"
-          value="Queso crema">
+      <label><input type="checkbox" class="secundario" value="Queso crema"> Queso crema</label>
 
-        Queso crema
-      </label>
+      <label><input type="checkbox" class="secundario" value="Palta"> Palta</label>
 
-      <label>
-        <input
-          type="checkbox"
-          class="secundario"
-          value="Palta">
+      <label><input type="checkbox" class="secundario" value="Pepino"> Pepino</label>
 
-        Palta
-      </label>
+      <label><input type="checkbox" class="secundario" value="Ciboulette"> Ciboulette</label>
 
-      <label>
-        <input
-          type="checkbox"
-          class="secundario"
-          value="Pepino">
+      <label><input type="checkbox" class="secundario" value="Cebollín"> Cebollín</label>
 
-        Pepino
-      </label>
+      <label><input type="checkbox" class="secundario" value="Palmito"> Palmito</label>
 
-      <label>
-        <input
-          type="checkbox"
-          class="secundario"
-          value="Ciboulette">
+      <label><input type="checkbox" class="secundario" value="Pimentón"> Pimentón</label>
 
-        Ciboulette
-      </label>
+      <label><input type="checkbox" class="secundario" value="Aceitunas"> Aceitunas</label>
 
-      <label>
-        <input
-          type="checkbox"
-          class="secundario"
-          value="Cebollín">
+      <label><input type="checkbox" class="secundario" value="Ají verde"> Ají verde</label>
 
-        Cebollín
-      </label>
+      <label><input type="checkbox" class="secundario" value="Albahaca"> Albahaca</label>
 
-      <label>
-        <input
-          type="checkbox"
-          class="secundario"
-          value="Palmito">
+      <label><input type="checkbox" class="secundario" value="Choclito"> Choclito</label>
 
-        Palmito
-      </label>
-
-      <label>
-        <input
-          type="checkbox"
-          class="secundario"
-          value="Pimentón">
-
-        Pimentón
-      </label>
-
-      <label>
-        <input
-          type="checkbox"
-          class="secundario"
-          value="Aceitunas">
-
-        Aceitunas
-      </label>
-
-      <label>
-        <input
-          type="checkbox"
-          class="secundario"
-          value="Ají verde">
-
-        Ají verde
-      </label>
-
-      <label>
-        <input
-          type="checkbox"
-          class="secundario"
-          value="Albahaca">
-
-        Albahaca
-      </label>
-
-      <label>
-        <input
-          type="checkbox"
-          class="secundario"
-          value="Choclito">
-
-        Choclito
-      </label>
-
-      <label>
-        <input
-          type="checkbox"
-          class="secundario"
-          value="Zanahoria">
-
-        Zanahoria
-      </label>
+      <label><input type="checkbox" class="secundario" value="Zanahoria"> Zanahoria</label>
 
     </div>
 
   </div>
 
-  <!-- BOTÓN -->
-
-  <div
-  style="
-    margin-top:20px;
-    display:flex;
-    justify-content:flex-start;
-  ">
+  <br>
 
   <button onclick="agregarRollPersonalizado()">
-
     Agregar Roll
-
   </button>
 
 </div>
-
 </div>
+
   <!-- GOHAN PERSONALIZADO -->
 
 <div class="card">
 
-  <h2>Arma tu Gohan</h2>
+  <h2
+    onclick="toggleSeccion('seccionGohan')"
+    style="cursor:pointer; user-select:none;"
+  >
+    Arma tu Gohan ▼
+  </h2>
 
-  <div class="grid">
+  <div id="seccionGohan" style="display:none;">
+
+    <div class="grid">
 
     <div>
 
@@ -1104,14 +1078,20 @@
 
 
 </div>
+</div>
 
-<!-- BURGERS  -->
- 
 <div class="card">
 
-  <h2>Arma tu SushiBurger</h2>
+  <h2
+    onclick="toggleSeccion('seccionSushiBurger')"
+    style="cursor:pointer; user-select:none;"
+  >
+    Arma tu SushiBurger ▼
+  </h2>
 
-  <div class="grid">
+  <div id="seccionSushiBurger" style="display:none;">
+
+    <div class="grid">
 
     <!-- BASE 1 -->
 
@@ -1310,6 +1290,121 @@
   </button>
 
 </div>
+</div>
+
+<div class="card">
+
+  <h2
+    onclick="toggleSeccion('seccionBebidas')"
+    style="cursor:pointer; user-select:none;"
+  >
+    🥤 Bebidas ▼
+  </h2>
+
+  <div id="seccionBebidas" style="display:none;">
+
+    <div class="productos">
+
+      <button onclick="agregarPedido('Coca Cola 220cc', 1000)">
+        Coca Cola 220cc - $1.000
+      </button>
+
+      <button onclick="agregarPedido('Coca Cola Zero 220cc', 1000)">
+        Coca Cola Zero 220cc - $1.000
+      </button>
+
+      <button onclick="agregarPedido('Sprite 220cc', 1000)">
+        Sprite 220cc - $1.000
+      </button>
+
+      <button onclick="agregarPedido('Fanta 220cc', 1000)">
+        Fanta 220cc - $1.000
+      </button>
+
+      <button onclick="agregarPedido('Coca Cola 1.5 lt', 2990)">
+        Coca Cola 1.5 lt - $2.990
+      </button>
+
+      <button onclick="agregarPedido('Coca Cola Zero 1.5 lt', 2990)">
+        Coca Cola Zero 1.5 lt - $2.990
+      </button>
+      
+      <button onclick="agregarPedido('Fanta 1.5 lt', 2990)">
+        Fanta 1.5 lt - $2.990
+      </button>
+
+      <button onclick="agregarPedido('Sprite 1.5 lt', 2990)">
+        Sprite 1.5 lt - $2.990
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="card">
+
+  <h2
+    onclick="toggleSeccion('seccionSalsas')"
+    style="cursor:pointer; user-select:none;"
+  >
+    🥢 Salsas y Extras ▼
+  </h2>
+
+  <div id="seccionSalsas" style="display:none;">
+
+    <div class="productos">
+
+      <button onclick="agregarPedido('Soya', 790)">
+        Soya - $790
+      </button>
+
+      <button onclick="agregarPedido('Teriyaki', 790)">
+        Teriyaki - $790
+      </button>
+
+      <button onclick="agregarPedido('Jengibre', 790)">
+        Jengibre - $790
+      </button>
+
+      <button onclick="agregarPedido('Wasabi', 790)">
+        Wasabi - $790
+      </button>
+
+      <button onclick="agregarPedido('Acevichada', 900)">
+        Acevichada - $900
+      </button>
+
+      <button onclick="agregarPedido('Fuji', 900)">
+        Fuji - $900
+      </button>
+
+      <button onclick="agregarPedido('Umami', 900)">
+        Umami - $900
+      </button>
+
+      <button onclick="agregarPedido('Olivo', 900)">
+        Olivo - $900
+      </button>
+
+      <button onclick="agregarPedido('Salsa Blanca', 900)">
+        Salsa Blanca - $900
+      </button>
+
+      <button onclick="agregarPedido('Salsa Pimienta', 900)">
+        Salsa Pimienta - $900
+      </button>
+      
+       <button onclick="agregarPedido('Huancaína', 900)">
+        Huancaína - $900
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
   <!-- OBS -->
 
   <div class="card">
@@ -1412,15 +1507,49 @@ window.actualizarTextoRoll = function(){
   let texto =
     document.getElementById("textoSecundarios");
 
+  let envoltura =
+    document.getElementById("envoltura");
+
   if(tipoRoll === "sin"){
 
     texto.innerText =
-      "Ingredientes secundarios (mínimo 1 y máximo 4)";
+      "Sin arroz: hasta 4 secundarios con base, hasta 5 secundarios sin base (máx. 7)";
 
-  } else {
+    envoltura.disabled = false;
+
+  }else if(tipoRoll === "hosomaki"){
 
     texto.innerText =
-      "Ingredientes secundarios (mínimo 1 y máximo 2)";
+      "Hosomaki: 1 proteína obligatoria y 1 secundario obligatorio";
+
+    envoltura.value = "Nori";
+    envoltura.disabled = true;
+
+  }else{
+
+    texto.innerText =
+      "Con arroz: 1-2 secundarios con base, 3 secundarios sin base";
+
+    envoltura.disabled = false;
+  }
+}
+
+actualizarTextoRoll();
+
+
+window.toggleSeccion = function(id){
+
+  let seccion =
+    document.getElementById(id);
+
+  if(seccion.style.display === "none"){
+
+    seccion.style.display = "block";
+
+  }else{
+
+    seccion.style.display = "none";
+
   }
 }
 
@@ -1460,79 +1589,62 @@ window.agregarPedido = function(producto, precio){
   document.getElementById("observacion").value = "";
 }
 
-window.agregarPremium = function(
-  nombre,
-  precio
-){
+window.agregarPromoBurger = function(){
 
-  let ofertasActivas =
-    document.getElementById("modoOfertas").checked;
+  let burger1 =
+    document.getElementById("burgerPromo1").value;
 
-  let descuento = 0;
-
-  // =========================
-  // DESCUENTOS
-  // =========================
-
-  if(ofertasActivas){
-
-    // 20% OFF
-
-    if(
-      nombre === "Asian rolls" ||
-      nombre === "Ceviche rolls" ||
-      nombre === "Fuji crunch rolls" ||
-      nombre === "Triple plaqueta"
-    ){
-
-      descuento = 20;
-    }
-
-    // 15% OFF
-
-    if(
-      nombre === "Spicy rolls" ||
-      nombre === "Cheese hot"
-    ){
-
-      descuento = 15;
-    }
-  }
-
-  // =========================
-  // CALCULAR PRECIO
-  // =========================
-
-  let precioFinal = precio;
-
-  if(descuento > 0){
-
-    precioFinal =
-      Math.round(
-        precio - (precio * descuento / 100)
-      );
-  }
-
-  // =========================
-  // TEXTO DEL PRODUCTO
-  // =========================
-
-  let nombreFinal = nombre;
-
-  if(descuento > 0){
-
-    nombreFinal +=
-      ` | ${descuento}% OFF`;
-  }
-
-  // =========================
-  // AGREGAR AL PEDIDO
-  // =========================
+  let burger2 =
+    document.getElementById("burgerPromo2").value;
 
   agregarPedido(
-    nombreFinal,
-    precioFinal
+    `Promo Burger: ${burger1} + ${burger2}`,
+    13990
   );
+
+  actualizarTotal();
+}
+
+window.agregarPromoHandroll = function(){
+
+  let h1 =
+    document.getElementById("handroll1").value;
+
+  let h2 =
+    document.getElementById("handroll2").value;
+
+  let h3 =
+    document.getElementById("handroll3").value;
+
+  let handrolls =
+    [h1, h2, h3]
+      .filter(item => item !== "");
+
+  let cantidad =
+    handrolls.length;
+
+  let precio = 0;
+
+  if(cantidad === 1){
+    precio = 4500;
+  }
+  else if(cantidad === 2){
+    precio = 8400;
+  }
+  else if(cantidad === 3){
+    precio = 12000;
+  }
+  else{
+    alert("Debes elegir al menos un handroll");
+    return;
+  }
+
+  agregarPedido(
+    `Promo Handrolls (${cantidad}): ${handrolls.join(" + ")}`,
+    precio
+  );
+
+  actualizarTotal();
 }
 
 window.agregarRollPersonalizado = function(){
@@ -1546,78 +1658,256 @@ window.agregarRollPersonalizado = function(){
   let base =
     document.getElementById("base").value;
 
-  // BASE EXTRA
-
   let baseExtra =
     document.getElementById("baseExtra").value;
 
-  // FRITOS
+  let baseFrita =
+    document.getElementById("baseFrita").checked;
 
-  let fritoBase =
-    document.getElementById("fritoBase").checked;
-
-  let fritoBaseExtra =
-    document.getElementById("fritoBaseExtra").checked;
+  let baseExtraFrita =
+    document.getElementById("baseExtraFrita").checked;
 
   let secundarios =
     Array.from(
       document.querySelectorAll(".secundario:checked")
     ).map(item => item.value);
 
-  // =========================
+ let precio = 5490;
+
+if(tipoRoll === "sin"){
+  precio = 6790;
+}
+
+if(tipoRoll === "hosomaki"){
+  precio = 4290;
+}
+
+  let extrasSecundarios = 0;
+
   // VALIDACIONES
-  // =========================
 
-  // mínimo 1 ingrediente
+// VALIDACIONES
 
-  if(secundarios.length < 1){
+if(tipoRoll === "hosomaki"){
+
+  if(base === ""){
 
     alert(
-      "Debes escoger mínimo 1 ingrediente secundario"
+      "Hosomaki debe llevar una proteína"
     );
 
     return;
   }
 
-  // máximo absoluto
-
-  if(secundarios.length > 20){
+  if(
+    base === "Lomo" ||
+    base === "Pulpo"
+  ){
 
     alert(
-      "Máximo 20 ingredientes secundarios"
+      "Hosomaki no permite Lomo ni Pulpo"
     );
 
     return;
   }
 
-  // =========================
-  // PRECIO BASE
-  // =========================
+  if(baseExtra){
 
-  let precio =
-    tipoRoll === "sin"
-    ? 6790
-    : 5490;
+    alert(
+      "Hosomaki no permite base extra"
+    );
 
-  // =========================
-  // EXTRAS ENVOLTURA
-  // =========================
-
-  if(envoltura === "Masago"){
-    precio += 1500;
+    return;
   }
 
-  if(envoltura === "Atún"){
-    precio += 2500;
+  if(baseFrita || baseExtraFrita){
+
+    alert(
+      "Hosomaki no permite frituras"
+    );
+
+    return;
   }
 
-  if(envoltura === "Salmón"){
-    precio += 2500;
+  if(secundarios.length !== 1){
+
+    alert(
+      "Hosomaki debe llevar exactamente 1 secundario"
+    );
+
+    return;
   }
 
-  // =========================
-  // EXTRAS BASE PRINCIPAL
-  // =========================
+}else if(tipoRoll === "con"){
+
+  if(base === ""){
+
+    // SIN BASE
+    if(
+      secundarios.length < 1 ||
+      secundarios.length > 4
+    ){
+
+      alert(
+        "Sin base debes elegir entre 1 y 4 secundarios"
+      );
+
+      return;
+    }
+
+    if(secundarios.length >= 4){
+      extrasSecundarios += 990;
+    }
+
+  }else if(baseExtra){
+
+    // CON 2 BASES
+    if(
+      secundarios.length < 1 ||
+      secundarios.length > 3
+    ){
+
+      alert(
+        "Con 2 bases debes elegir entre 1 y 3 secundarios"
+      );
+
+      return;
+    }
+
+    if(secundarios.length >= 3){
+      extrasSecundarios += 990;
+    }
+
+  }else{
+
+    // CON 1 BASE
+    if(
+      secundarios.length < 1 ||
+      secundarios.length > 4
+    ){
+
+      alert(
+        "Con 1 base debes elegir entre 1 y 4 secundarios"
+      );
+
+      return;
+    }
+
+    if(secundarios.length > 2){
+      extrasSecundarios =
+        (secundarios.length - 2) * 990;
+    }
+  }
+
+}else{
+  // SIN ARROZ
+
+  if(base === ""){
+
+    if(
+      secundarios.length < 1 ||
+      secundarios.length > 7
+    ){
+
+      alert(
+        "Sin base debes elegir entre 1 y 7 secundarios"
+      );
+
+      return;
+    }
+
+    // 6° y 7° cobran
+    if(secundarios.length > 5){
+      extrasSecundarios =
+        (secundarios.length - 5) * 990;
+    }
+
+  }else if(baseExtra){
+
+    // CON 2 BASES
+
+    if(
+      secundarios.length < 1 ||
+      secundarios.length > 5
+    ){
+
+      alert(
+        "Con 2 bases debes elegir entre 1 y 5 secundarios"
+      );
+
+      return;
+    }
+
+    // 5° cobra
+    if(secundarios.length > 4){
+      extrasSecundarios += 990;
+    }
+
+  }else{
+
+    // CON 1 BASE
+
+    if(
+      secundarios.length < 1 ||
+      secundarios.length > 6
+    ){
+
+      alert(
+        "Con 1 base debes elegir entre 1 y 6 secundarios"
+      );
+
+      return;
+    }
+
+    // 5° y 6° cobran
+    if(secundarios.length > 4){
+      extrasSecundarios =
+        (secundarios.length - 4) * 990;
+    }
+  }
+}
+
+  // ENVOLTURAS
+if(
+  tipoRoll !== "hosomaki" &&
+  envoltura === "Masago"
+){
+  precio += 1500;
+}
+
+if(
+  tipoRoll !== "hosomaki" &&
+  envoltura === "Atún"
+){
+  precio += 2500;
+}
+
+if(
+  tipoRoll !== "hosomaki" &&
+  envoltura === "Salmón"
+){
+  precio += 2500;
+}
+
+  // BASES
+
+  if(baseExtra){
+
+    let basePremium =
+      base === "Lomo" ||
+      base === "Pulpo";
+
+    let extraPremium =
+      baseExtra === "Lomo" ||
+      baseExtra === "Pulpo";
+
+    // Solo cobra $990 cuando ambas bases son normales
+    if(!basePremium && !extraPremium){
+      precio += 990;
+    }
+  }
+
+  // Recargos por proteínas premium
 
   if(base === "Lomo"){
     precio += 2200;
@@ -1625,34 +1915,6 @@ window.agregarRollPersonalizado = function(){
 
   if(base === "Pulpo"){
     precio += 3290;
-  }
-
-  // =========================
-  // EXTRAS BASE EXTRA
-  // =========================
-
-  if(baseExtra === "Salmón"){
-    precio += 990;
-  }
-
-  if(baseExtra === "Camarón"){
-    precio += 990;
-  }
-
-  if(baseExtra === "Pollo"){
-    precio += 990;
-  }
-
-  if(baseExtra === "Kanikama"){
-    precio += 990;
-  }
-
-  if(baseExtra === "Champiñón"){
-    precio += 990;
-  }
-
-  if(baseExtra === "Atún"){
-    precio += 990;
   }
 
   if(baseExtra === "Lomo"){
@@ -1663,180 +1925,141 @@ window.agregarRollPersonalizado = function(){
     precio += 3290;
   }
 
-  // =========================
-  // FRITOS
-  // =========================
+  // Fritas
 
-  // FRITO BASE PRINCIPAL
-
-  if(fritoBase){
+  if(baseFrita){
     precio += 990;
   }
 
-  // FRITO BASE EXTRA
-
-  if(fritoBaseExtra){
+  if(baseExtraFrita){
     precio += 990;
-  }
-
-  // =========================
-  // EXTRAS SECUNDARIOS
-  // =========================
-
-  let extrasSecundarios = 0;
-
-  // ROLL SIN ARROZ
-  // GRATIS HASTA 4
-
-  if(
-    tipoRoll === "sin" &&
-    secundarios.length > 4
-  ){
-
-    extrasSecundarios =
-      (secundarios.length - 4) * 990;
-
-    precio += extrasSecundarios;
-  }
-
-  // ROLL CON ARROZ
-  // GRATIS HASTA 2
-
-  if(
-    tipoRoll === "con" &&
-    secundarios.length > 2
-  ){
-
-    extrasSecundarios =
-      (secundarios.length - 2) * 990;
-
-    precio += extrasSecundarios;
-  }
-
-  // =========================
-  // NOMBRE DEL ROLL
-  // =========================
-
-  let nombreRoll =
-    `Roll ${
-      tipoRoll === "sin"
-      ? "sin arroz"
-      : "con arroz"
-    } | ${envoltura} | ${base}${
-      fritoBase
-      ? " Frito"
-      : ""
-    }${
-      baseExtra
-      ? " + " + baseExtra
-      : ""
-    }${
-      fritoBaseExtra
-      ? " Frito"
-      : ""
-    } + ${secundarios.join(" + ")}`;
-
-  // =========================
-  // MOSTRAR EXTRAS
-  // =========================
-
-  let extrasTexto = [];
-
-  // EXTRA BASE
-
-  if(baseExtra){
-
-    if(
-      baseExtra === "Salmón" ||
-      baseExtra === "Camarón" ||
-      baseExtra === "Pollo" ||
-      baseExtra === "Kanikama" ||
-      baseExtra === "Champiñón"
-    ){
-
-      extrasTexto.push(
-        `Base extra: +$990`
-      );
-    }
-
-    if(baseExtra === "Atún"){
-
-      extrasTexto.push(
-        `Base extra: +$1490`
-      );
-    }
-
-    if(baseExtra === "Lomo"){
-
-      extrasTexto.push(
-        `Base extra: +$2200`
-      );
-    }
-
-    if(baseExtra === "Pulpo"){
-
-      extrasTexto.push(
-        `Base extra: +$3290`
-      );
-    }
-  }
-
-  // FRITOS
-
-  if(fritoBase){
-
-    extrasTexto.push(
-      `Base frita: +$990`
-    );
-  }
-
-  if(fritoBaseExtra){
-
-    extrasTexto.push(
-      `Base extra frita: +$990`
-    );
   }
 
   // SECUNDARIOS EXTRA
 
-  if(extrasSecundarios > 0){
+  precio += extrasSecundarios;
 
-    extrasTexto.push(
-      `Secundarios extra: +$${extrasSecundarios}`
-    );
-  }
+  // NOMBRE
 
-  // MOSTRAR EXTRAS EN EL NOMBRE
+let nombreRoll;
 
-  if(extrasTexto.length > 0){
+if(tipoRoll === "hosomaki"){
+
+  nombreRoll = "Hosomaki";
+
+}else{
+
+  nombreRoll =
+    `Roll ${tipoRoll === "sin" ? "sin arroz" : "con arroz"} | ${envoltura}`;
+}
+
+  if(base){
 
     nombreRoll +=
-      ` | ${extrasTexto.join(" | ")}`;
+      ` | ${base}${baseFrita ? " Frita" : ""}`;
   }
 
-  // =========================
-  // AGREGAR PEDIDO
-  // =========================
+  if(baseExtra){
+
+    nombreRoll +=
+      ` + ${baseExtra}${baseExtraFrita ? " Frita" : ""}`;
+  }
+
+  nombreRoll +=
+    ` | ${secundarios.join(" + ")}`;
+
+  if(extrasSecundarios > 0){
+
+    nombreRoll +=
+      ` | Extras: +$${extrasSecundarios}`;
+  }
 
   agregarPedido(nombreRoll, precio);
-
-  // =========================
-  // LIMPIAR FORMULARIO
-  // =========================
 
   document
     .querySelectorAll(".secundario")
     .forEach(item => item.checked = false);
 
-  // reset base extra
+  document.getElementById("baseFrita").checked = false;
+
+  document.getElementById("baseExtraFrita").checked = false;
 
   document.getElementById("baseExtra").value = "";
 
-  // reset fritos
+  actualizarTotal();
+}
 
-  document.getElementById("fritoBase").checked = false;
+window.agregarTabla = function(nombre, precio){
 
-  document.getElementById("fritoBaseExtra").checked = false;
+  let cambio1 =
+    document.getElementById("tablaCambio1").checked;
+
+  let cambio2 =
+    document.getElementById("tablaCambio2").checked;
+
+  let empanizar =
+    document.getElementById("tablaEmpanizar").checked;
+
+  let plaqueta =
+    document.getElementById("tablaPlaqueta").checked;
+
+  let detalle =
+    document.getElementById("detalleTabla").value.trim();
+
+  let precioFinal =
+    precio;
+
+  let nombreFinal =
+    nombre;
+
+  if(cambio1){
+
+    precioFinal += 990;
+
+    nombreFinal +=
+      " | 1 cambio (+990)";
+  }
+
+  if(cambio2){
+
+    precioFinal += 1980;
+
+    nombreFinal +=
+      " | 2 cambios (+1980)";
+  }
+
+  if(empanizar){
+
+    precioFinal += 490;
+
+    nombreFinal +=
+      " | Empanizado (+490)";
+  }
+
+  if(plaqueta){
+
+    precioFinal += 1500;
+
+    nombreFinal +=
+      " | Plaqueta queso/palta (+1500)";
+  }
+
+  if(detalle){
+
+    nombreFinal +=
+      " | MOD: " + detalle;
+  }
+
+  agregarPedido(
+    nombreFinal,
+    precioFinal
+  );
+
+  document.getElementById("tablaCambio1").checked = false;
+  document.getElementById("tablaCambio2").checked = false;
+  document.getElementById("tablaEmpanizar").checked = false;
+  document.getElementById("tablaPlaqueta").checked = false;
+  document.getElementById("detalleTabla").value = "";
 
   actualizarTotal();
 }
