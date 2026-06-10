@@ -2,19 +2,19 @@
 <html lang="es">
 
 <head>
-
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <meta charset="UTF-8">
 
-  <title>Asian Sushi - Comandas</title>
+  <title>ASIAN SUSHI - PEDIDOS</title>
 
   <style>
 
     body{
-      font-family: Arial;
-      background: #f5f5f5;
-      margin: 10px;
-      padding: 20px;
-    }
+  font-family: "Poppins", sans-serif;
+  background: #f5f5f5;
+  margin: 10px;
+  padding: 8px;
+}
 
     .container{
       max-width: 1200px;
@@ -28,16 +28,24 @@
     }
 
     h2{
+      font-size: 20px; /* 👈 agrega esto */
+      margin-top: 10px;
+      margin-bottom: 15px;
+      color: #222;
+    }
+     h3{
+      font-size: 15px; /* 👈 agrega esto */
       margin-top: 10px;
       margin-bottom: 15px;
       color: #222;
     }
 
+
     .card{
       background: white;
       border-radius: 14px;
       padding: 20px;
-      margin-bottom: 35px;
+      margin-bottom: 25px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
 
@@ -86,11 +94,11 @@
     button{
       border: none;
       border-radius: 10px;
-      padding: 12px 16px;
+      padding: 12px 12px;
       cursor: pointer;
       background: #111;
       color: white;
-      font-size: 14px;
+      font-size: 15px;
     }
 
     button:hover{
@@ -148,13 +156,13 @@
 
 <div class="container">
 
-  <h1>🍣 Asian Sushi - Comandas</h1>
+  <h1>ASIAN SUSHI - PEDIDOS</h1>
 
   <!-- CLIENTE -->
 
   <div class="card">
 
-    <h2>Cliente</h2>
+    <h2>CLIENTE</h2>
 
     <div class="grid">
 
@@ -197,7 +205,7 @@
 
   <div class="card">
 
-    <h2>Entrega</h2>
+    <h2>ENTREGA</h2>
 
     <div class="grid">
 
@@ -240,7 +248,7 @@
 
   <div class="card">
 
-    <h2>Extras</h2>
+    <h2>PALITOS Y SALSAS</h2>
 
     <div class="grid">
 
@@ -275,7 +283,7 @@
   <div class="card">
 
  <h2 onclick="toggleSeccion('seccionOfertas')">
-  Ofertas 
+ 🔥 OFERTAS ▼
 </h2>
 
 <div id="seccionOfertas" style="display:none;">
@@ -395,9 +403,15 @@
 
   <div class="card">
 
-    <h2>Proteínas rebosadas</h2>
+  <h2 onclick="toggleSeccion('seccionEntrantes')">
+    🍤 ENTRANTES ▼
+  </h2>
 
-    <div class="Proteínas">
+  <div id="seccionEntrantes" style="display:none;">
+
+    <h3>Proteínas rebosadas</h3>
+
+    <div class="proteinas">
 
       <button onclick="agregarPedido('Camarón rebosado', 5490)">
         Camarón rebosado
@@ -412,7 +426,7 @@
       </button>
 
 
-      <h2>Gyozas</h2>
+      <h3>Gyozas</h3>
 
     <div class="Gyozas">
 
@@ -434,7 +448,7 @@
 
     </div>
 
-    <h2>Nigiris</h2>
+    <h3>Nigiris</h3>
 
     <div class="Nigiris">
 
@@ -460,7 +474,7 @@
 
     </div>
 
-    <h2>Sashimi</h2>
+    <h3>Sashimi</h3>
 
     <div class="Sashimi">
 
@@ -483,7 +497,7 @@
 
     </div>
 
-    <h2>Balls</h2>
+    <h3>Balls</h3>
 
     <div class="Balls">
 
@@ -504,7 +518,7 @@
       </button>
 
     
-
+</div>
     </div>
     </div> 
 
@@ -514,7 +528,13 @@
   <!-- tablas -->
     <div class="card">
 
-    <h2>Tablas Familiares</h2>
+    <h2 onclick="toggleSeccion('seccionTablas')">
+ 🍱 TABLAS ▼
+</h2>
+
+<div id="seccionTablas" style="display:none;">
+
+    <h3>Familiares y especiales</h3>
 
 
 <div class="productos">
@@ -535,46 +555,6 @@
     Tabla 80
   </button>
 
-  <label style="display:block; margin-bottom:8px;">
-  <input type="checkbox" id="tablaCambio1">
-  1 cambio (+990)
-</label>
-
-<label style="display:block; margin-bottom:8px;">
-  <input type="checkbox" id="tablaCambio2">
-  2 cambios (+1980)
-</label>
-
-<label style="display:block; margin-bottom:8px;">
-  <input type="checkbox" id="tablaEmpanizar">
-  Plaqueta panko (+490)
-</label>
-
-<label style="display:block; margin-bottom:8px;">
-  <input type="checkbox" id="tablaPlaqueta">
-  Plaqueta queso/palta (+1500)
-</label>
-
-<br>
-
-<label>Detalle cambios</label>
-
-<textarea
-  id="detalleTabla"
-  placeholder="Ej: Kani por camarón"
-  rows="3"
-></textarea>
-
-<br><br>
-</div>
-  </div>
-
-  <div class="card">
-
-    <h2>Tablas Especiales</h2>
-
-    <div class="productos">
-
       <button onclick="agregarPedido('Tabla Fusión', 20490)">
         Tabla Fusión
       </button>
@@ -594,7 +574,7 @@
       <button onclick="agregarPedido('Tabla Asian Veggie', 20990)">
         Tabla Asian Veggie
       </button>
-
+</div>
       <label style="display:block; margin-bottom:8px;">
   <input type="checkbox" id="tablaCambio1">
   1 cambio (+990)
@@ -627,15 +607,19 @@
 
 <br><br>
 
-    </div>
+  </div>
 
   </div>
 
    <!-- rolls premium -->
 
   <div class="card">
+    <h2 onclick="toggleSeccion('seccionRolls')">
+ 🌯 ROLLS PREMIUM ▼
+</h2>
 
-    <h2>Rolls premium</h2>
+<div id="seccions" style="display:none;">
+  
 
     <div class="productos">
 
@@ -690,7 +674,7 @@
       <button onclick="agregarPedido('Umami rolls', 8490)">
         Umami rolls
       </button>
-
+</div>
       <label style="display:block; margin-bottom:8px;">
   <input type="checkbox" id="tablaCambio1">
   1 cambio (+990)
@@ -715,6 +699,7 @@
 
   </div>
   </div>
+  
 
   <!-- ROLL -->
 
@@ -724,7 +709,7 @@
     onclick="toggleSeccion('seccionRoll')"
     style="cursor:pointer; user-select:none;"
   >
-    Arma tu Roll ▼
+   🍣 ARMA TU ROLLS ▼
   </h2>
 
   <div id="seccionRoll" style="display:none;">
@@ -882,7 +867,7 @@
     onclick="toggleSeccion('seccionGohan')"
     style="cursor:pointer; user-select:none;"
   >
-    Arma tu Gohan ▼
+   🍱 ARMA TU GOHAN ▼
   </h2>
 
   <div id="seccionGohan" style="display:none;">
@@ -1086,7 +1071,7 @@
     onclick="toggleSeccion('seccionSushiBurger')"
     style="cursor:pointer; user-select:none;"
   >
-    Arma tu SushiBurger ▼
+   🍔 ARMA TU SUSHIBURGER ▼
   </h2>
 
   <div id="seccionSushiBurger" style="display:none;">
@@ -1298,7 +1283,7 @@
     onclick="toggleSeccion('seccionBebidas')"
     style="cursor:pointer; user-select:none;"
   >
-    🥤 Bebidas ▼
+    🥤 BEBIDAS ▼
   </h2>
 
   <div id="seccionBebidas" style="display:none;">
@@ -1349,7 +1334,7 @@
     onclick="toggleSeccion('seccionSalsas')"
     style="cursor:pointer; user-select:none;"
   >
-    🥢 Salsas y Extras ▼
+    🥢 EXTRAS ▼
   </h2>
 
   <div id="seccionSalsas" style="display:none;">
@@ -1409,7 +1394,7 @@
 
   <div class="card">
 
-    <h2>Observación</h2>
+    <h2>OBSERVACIONES</h2>
 
     <input
     type="text"
@@ -1422,12 +1407,12 @@
 
   <div class="card">
 
-    <h2>Resumen pedido</h2>
+    <h2>RESUMEN PEDIDO</h2>
 
     <ul id="lista"></ul>
 
     <h2 id="total">
-      Total: $0
+      TOTAL: $0
     </h2>
 
     <div class="acciones">
