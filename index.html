@@ -60,7 +60,7 @@
       width: 100%;
       padding: 12px;
       border-radius: 10px;
-      border: 1px solid #ccc;
+      border: 2px solid #ccc;
       box-sizing: border-box;
       font-size: 15px;
     }
@@ -187,7 +187,7 @@
         </option>
 
         <option value="Debito">
-          Débito
+          Tarjeta
         </option>
 
       </select>
@@ -229,6 +229,21 @@
           Extremo Sur - $4.000
         </option>
 
+        <option value="Otros|5000">
+          Otros - $5.000
+        </option>
+
+            <option value="Otros|6000">
+          Otros - $6.000
+        </option>
+
+            <option value="Otros|7000">
+          Otros - $7.000
+        </option>
+
+        <option value="Otros|7000">
+          Otros - $8.000
+        </option>
       </select>
 
       <input
@@ -430,22 +445,28 @@
 
     <div class="Gyozas">
 
-      <button onclick="agregarPedido('Gyozas mixtas', 4990)">
-        Gyozas mixtas
-      </button>
+      <button onclick="agregarGyozas('Mixtas', 4990)">
+  Gyozas mixtas
+</button>
 
-      <button onclick="agregarPedido('Gyozas camarón', 4990)">
-        Gyozas camarón
-      </button>
+<button onclick="agregarGyozas('Camarón', 4990)">
+  Gyozas camarón
+</button>
 
-      <button onclick="agregarPedido('Gyozas cerdo', 4990)">
-        Gyozas cerdo
-      </button>
+<button onclick="agregarGyozas('Cerdo', 4990)">
+  Gyozas cerdo
+</button>
 
-      <button onclick="agregarPedido('Gyozas pollo', 4990)">
-        Gyozas pollo
-      </button>
+<button onclick="agregarGyozas('Pollo', 4990)">
+  Gyozas pollo
+</button>
 
+<br>
+ <label style="display:block; margin-top:8px;">
+  <input type="checkbox" id="gyozasFritas">
+  Fritas
+</label>
+<br>
     </div>
 
     <h3>Nigiris</h3>
@@ -526,180 +547,185 @@
   
 
   <!-- tablas -->
-    <div class="card">
+<div class="card">
 
-    <h2 onclick="toggleSeccion('seccionTablas')">
- 🍱 TABLAS ▼
-</h2>
+  <h2 onclick="toggleSeccion('seccionTablas')">
+    🍱 TABLAS ▼
+  </h2>
 
-<div id="seccionTablas" style="display:none;">
+  <div id="seccionTablas" style="display:none;">
 
     <h3>Familiares y especiales</h3>
 
+    <div class="productos">
 
-<div class="productos">
+      <button onclick="agregarTabla('Tabla Individual 20', 9990)">
+        Tabla 20
+      </button>
 
-  <button onclick="agregarTabla('Tabla Individual 20', 9990)">
-    Tabla 20
-  </button>
+      <button onclick="agregarTabla('Tabla Familiar 40', 18990)">
+        Tabla 40
+      </button>
 
-  <button onclick="agregarTabla('Tabla Familiar 40', 18990)">
-    Tabla 40
-  </button>
+      <button onclick="agregarTabla('Tabla Familiar 60', 27990)">
+        Tabla 60
+      </button>
 
-  <button onclick="agregarTabla('Tabla Familiar 60', 27990)">
-    Tabla 60
-  </button>
+      <button onclick="agregarTabla('Tabla Familiar 80', 36990)">
+        Tabla 80
+      </button>
 
-  <button onclick="agregarTabla('Tabla Familiar 80', 36990)">
-    Tabla 80
-  </button>
-
-      <button onclick="agregarPedido('Tabla Fusión', 20490)">
+      <button onclick="agregarTabla('Tabla Fusión', 20490)">
         Tabla Fusión
       </button>
 
-      <button onclick="agregarPedido('Tabla Chicken Lovers', 20990)">
+      <button onclick="agregarTabla('Tabla Chicken Lovers', 20990)">
         Tabla Chicken Lovers
       </button>
 
-      <button onclick="agregarPedido('Tabla Sake Asian', 22990)">
+      <button onclick="agregarTabla('Tabla Sake Asian', 22990)">
         Tabla Sake Asian
       </button>
 
-      <button onclick="agregarPedido('Tabla Love Veggie', 22990)">
+      <button onclick="agregarTabla('Tabla Love Veggie', 22990)">
         Tabla Love Veggie
       </button>
 
-      <button onclick="agregarPedido('Tabla Asian Veggie', 20990)">
+      <button onclick="agregarTabla('Tabla Asian Veggie', 20990)">
         Tabla Asian Veggie
       </button>
+
+    </div>
+
+    <br>
+
+    <label style="display:block; margin-bottom:8px;">
+      <input type="checkbox" id="tablaCambio1">
+      1 cambio (+990)
+    </label>
+
+    <label style="display:block; margin-bottom:8px;">
+      <input type="checkbox" id="tablaCambio2">
+      2 cambios (+1980)
+    </label>
+
+    <label style="display:block; margin-bottom:8px;">
+      <input type="checkbox" id="tablaEmpanizar">
+      Plaqueta panko (+490)
+    </label>
+
+    <label style="display:block; margin-bottom:8px;">
+      <input type="checkbox" id="tablaPlaqueta">
+      Plaqueta queso/palta (+1500)
+    </label>
+
+    <br>
+
+    <label>Observación del producto</label>
+
+    <input
+      type="text"
+      id="detalleTabla"
+      placeholder="Ej: cambiar kani por camarón, sin cebollín..."
+    >
+
+    <br><br>
+
+  </div>
+
 </div>
-      <label style="display:block; margin-bottom:8px;">
-  <input type="checkbox" id="tablaCambio1">
-  1 cambio (+990)
-</label>
-
-<label style="display:block; margin-bottom:8px;">
-  <input type="checkbox" id="tablaCambio2">
-  2 cambios (+1980)
-</label>
-
-<label style="display:block; margin-bottom:8px;">
-  <input type="checkbox" id="tablaEmpanizar">
-  Plaqueta panko (+490)
-</label>
-
-<label style="display:block; margin-bottom:8px;">
-  <input type="checkbox" id="tablaPlaqueta">
-  Plaqueta queso/palta (+1500)
-</label>
-
-<br>
-
-<label>Detalle cambios</label>
-
-<textarea
-  id="detalleTabla"
-  placeholder="Ej: Kani por camarón"
-  rows="3"
-></textarea>
-
-<br><br>
-
-  </div>
-
-  </div>
-
    <!-- rolls premium -->
 
-  <div class="card">
-    <h2 onclick="toggleSeccion('seccionRolls')">
- 🌯 ROLLS PREMIUM ▼
-</h2>
+<div class="card">
 
-<div id="seccions" style="display:none;">
-  
+  <h2
+    onclick="toggleSeccion('seccionRolls')"
+    style="cursor:pointer; user-select:none;"
+  >
+    🌯 ROLLS PREMIUM ▼
+  </h2>
+
+  <div id="seccionRolls" style="display:none;">
 
     <div class="productos">
 
-      <button onclick="agregarPedido('Asian rolls', 9990)">
+      <button onclick="agregarRollPremium('Asian rolls', 9990)">
         Asian rolls
       </button>
 
-      <button onclick="agregarPedido('Ceviche rolls', 9990)">
+      <button onclick="agregarRollPremium('Ceviche rolls', 9990)">
         Ceviche rolls
       </button>
 
-      <button onclick="agregarPedido('Criollo rolls', 7190)">
+      <button onclick="agregarRollPremium('Criollo rolls', 7190)">
         Criollo rolls
       </button>
 
-      <button onclick="agregarPedido('Cheese hot', 6490)">
+      <button onclick="agregarRollPremium('Cheese hot', 6490)">
         Cheese hot
       </button>
 
-      <button onclick="agregarPedido('Cheese and toasted', 6490)">
+      <button onclick="agregarRollPremium('Cheese and toasted', 6490)">
         Cheese and toasted
       </button>
 
-       <button onclick="agregarPedido('Fuji crunch rolls', 8490)">
+      <button onclick="agregarRollPremium('Fuji crunch rolls', 8490)">
         Fuji crunch rolls
       </button>
 
-      <button onclick="agregarPedido('Lomo salteado', 8490)">
+      <button onclick="agregarRollPremium('Lomo salteado', 8490)">
         Lomo salteado
       </button>
 
-      <button onclick="agregarPedido('Masago ebi furay', 6490)">
+      <button onclick="agregarRollPremium('Masago ebi furay', 6490)">
         Masago ebi furay
       </button>
 
-       <button onclick="agregarPedido('Pulpo al olivo', 8490)">
+      <button onclick="agregarRollPremium('Pulpo al olivo', 8490)">
         Pulpo al olivo
       </button>
 
-       <button onclick="agregarPedido('Sake tartar rolls', 8490)">
+      <button onclick="agregarRollPremium('Sake tartar rolls', 8490)">
         Sake tartar rolls
       </button>
 
-      <button onclick="agregarPedido('Spicy rolls', 7190)">
+      <button onclick="agregarRollPremium('Spicy rolls', 7190)">
         Spicy rolls
       </button>
 
-      <button onclick="agregarPedido('Triple plaqueta', 8490)">
+      <button onclick="agregarRollPremium('Triple plaqueta', 8490)">
         Triple plaqueta
       </button>
 
-      <button onclick="agregarPedido('Umami rolls', 8490)">
+      <button onclick="agregarRollPremium('Umami rolls', 8490)">
         Umami rolls
       </button>
+
+    </div>
+
+    <br>
+
+    <label style="display:block; margin-bottom:8px;">
+      <input type="checkbox" id="premiumCambio1">
+      1 cambio (+990)
+    </label>
+
+    <label style="display:block; margin-bottom:8px;">
+      <input type="checkbox" id="premiumBandeja">
+      Bandeja extra (+490)
+    </label>
+
+     <label>Observación del producto</label>
+
+<input
+  type="text"
+  id="observacionItem"
+  placeholder="Ej: sin cebollín, bien cocido..."
+>
+
+  </div>
+
 </div>
-      <label style="display:block; margin-bottom:8px;">
-  <input type="checkbox" id="tablaCambio1">
-  1 cambio (+990)
-</label>
-
-<label style="display:block; margin-bottom:8px;">
-  <input type="checkbox" id="tablaEmpanizar">
-  Bandeja extra (+490)
-</label>
-
-<br>
-
-<label>Detalle cambios</label>
-
-<textarea
-  id="detalleTabla"
-  placeholder="Ej: Kani por camarón"
-  rows="3"
-></textarea>
-
-<br><br>
-
-  </div>
-  </div>
-  
 
   <!-- ROLL -->
 
@@ -880,6 +906,7 @@
 
       <select id="gohanBase1">
 
+<option value="">Sin proteína</option>
         <option value="Salmón">Salmón</option>
         <option value="Camarón">Camarón</option>
         <option value="Pollo">Pollo</option>
@@ -910,6 +937,7 @@
 
       <select id="gohanBase2">
 
+        <option value="">Sin proteína</option>
         <option value="Salmón">Salmón</option>
         <option value="Camarón">Camarón</option>
         <option value="Pollo">Pollo</option>
@@ -1056,12 +1084,21 @@
 </div>
 
   <br>
-
   <button onclick="agregarGohan()">
     Agregar Gohan
   </button>
 
+   <br>
 
+ <label>Observación del producto</label>
+
+<input
+  type="text"
+  id="observacionGohan"
+  placeholder="Ej: sin cebollín, bien cocido..."
+>
+
+ <br><br>
 </div>
 </div>
 
@@ -1086,6 +1123,7 @@
 
       <select id="burgerBase1">
 
+        <option value="">Sin proteína</option>
         <option value="Salmón">Salmón</option>
         <option value="Camarón">Camarón</option>
         <option value="Pollo">Pollo</option>
@@ -1105,7 +1143,7 @@
 
       <label>
         <input type="checkbox" id="burgerFrito1">
-        Frito (+1000)
+        Frito 
       </label>
 
     </div>
@@ -1118,6 +1156,7 @@
 
       <select id="burgerBase2">
 
+<option value="">Sin proteína</option>
        <option value="Salmón">Salmón</option>
         <option value="Camarón">Camarón</option>
         <option value="Pollo">Pollo</option>
@@ -1137,7 +1176,7 @@
 
       <label>
         <input type="checkbox" id="burgerFrito2">
-        Frito (+1000)
+        Frito 
       </label>
 
     </div>
@@ -1274,8 +1313,19 @@
     Agregar SushiBurger
   </button>
 
+
+
+
+ <label>Observación del producto</label>
+
+<input
+  type="text"
+  id="observacionItem"
+  placeholder="Ej: sin cebollín, bien cocido..."
+>
 </div>
 </div>
+
 
 <div class="card">
 
@@ -1391,17 +1441,15 @@
 
 </div>
   <!-- OBS -->
+   <br>
+<label>Observación del pedido</label>
 
-  <div class="card">
-
-    <h2>OBSERVACIONES</h2>
-
-    <input
-    type="text"
-    id="observacion"
-    placeholder="Observación opcional">
-
-  </div>
+<input
+  type="text"
+  id="observacionItem"
+  placeholder="Ej: sin cebollín, bien cocido..."
+>
+<br><br>
 
   <!-- RESUMEN -->
 
@@ -1540,18 +1588,15 @@ window.toggleSeccion = function(id){
 
 window.agregarPedido = function(producto, precio){
 
-  let observacion =
-    document.getElementById("observacion").value;
-
-  let item = producto;
-
-  if(observacion.trim() !== ""){
-
-    item += " | Obs: " + observacion;
-  }
+  console.log("AGREGANDO:");
+  console.log(producto);
+  console.log(precio);
 
   let existente =
-    pedido.find(p => p.nombre === item);
+    pedido.find(
+      p => p.nombre === producto &&
+      p.precio === precio
+    );
 
   if(existente){
 
@@ -1560,18 +1605,68 @@ window.agregarPedido = function(producto, precio){
   } else {
 
     pedido.push({
-      nombre: item,
+      nombre: producto,
       precio: precio,
       cantidad: 1
     });
 
   }
 
+  console.log(pedido);
+
   renderizarPedido();
 
   actualizarTotal();
+}
 
-  document.getElementById("observacion").value = "";
+window.agregarRollPremium = function(nombre, precio){
+
+  let observacion =
+    document.getElementById("observacionItem").value.trim();
+
+ let cambio =
+  document.getElementById("premiumCambio1").checked;
+
+let bandeja =
+  document.getElementById("premiumBandeja").checked;
+
+  let precioFinal = Number(precio);
+
+  let descripcion = nombre;
+
+  if(cambio){
+
+    precioFinal += 990;
+
+    descripcion +=
+      " | 1 cambio (+990)";
+  }
+
+  if(bandeja){
+
+    precioFinal += 490;
+
+    descripcion +=
+      " | Bandeja extra (+490)";
+  }
+
+  if(observacion !== ""){
+
+    descripcion +=
+      " | Obs: " + observacion;
+  }
+
+  console.log("Producto:", descripcion);
+  console.log("Precio final:", precioFinal);
+
+  agregarPedido(
+    descripcion,
+    precioFinal
+  );
+
+ document.getElementById("premiumCambio1").checked = false;
+document.getElementById("premiumBandeja").checked = false;
+  document.getElementById("observacionItem").value = "";
 }
 
 window.agregarPromoBurger = function(){
@@ -1588,6 +1683,29 @@ window.agregarPromoBurger = function(){
   );
 
   actualizarTotal();
+}
+
+window.agregarGyozas = function(nombre, precio){
+
+  let fritas =
+    document.getElementById("gyozasFritas").checked;
+
+  let descripcion = nombre;
+
+  if(fritas){
+
+    descripcion =
+      `Gyozas ${nombre} fritas`;
+
+  }else{
+
+    descripcion =
+      `Gyozas ${nombre}`;
+  }
+
+  agregarPedido(descripcion, precio);
+
+  document.getElementById("gyozasFritas").checked = false;
 }
 
 window.agregarPromoHandroll = function(){
@@ -1974,80 +2092,6 @@ if(tipoRoll === "hosomaki"){
   actualizarTotal();
 }
 
-window.agregarTabla = function(nombre, precio){
-
-  let cambio1 =
-    document.getElementById("tablaCambio1").checked;
-
-  let cambio2 =
-    document.getElementById("tablaCambio2").checked;
-
-  let empanizar =
-    document.getElementById("tablaEmpanizar").checked;
-
-  let plaqueta =
-    document.getElementById("tablaPlaqueta").checked;
-
-  let detalle =
-    document.getElementById("detalleTabla").value.trim();
-
-  let precioFinal =
-    precio;
-
-  let nombreFinal =
-    nombre;
-
-  if(cambio1){
-
-    precioFinal += 990;
-
-    nombreFinal +=
-      " | 1 cambio (+990)";
-  }
-
-  if(cambio2){
-
-    precioFinal += 1980;
-
-    nombreFinal +=
-      " | 2 cambios (+1980)";
-  }
-
-  if(empanizar){
-
-    precioFinal += 490;
-
-    nombreFinal +=
-      " | Empanizado (+490)";
-  }
-
-  if(plaqueta){
-
-    precioFinal += 1500;
-
-    nombreFinal +=
-      " | Plaqueta queso/palta (+1500)";
-  }
-
-  if(detalle){
-
-    nombreFinal +=
-      " | MOD: " + detalle;
-  }
-
-  agregarPedido(
-    nombreFinal,
-    precioFinal
-  );
-
-  document.getElementById("tablaCambio1").checked = false;
-  document.getElementById("tablaCambio2").checked = false;
-  document.getElementById("tablaEmpanizar").checked = false;
-  document.getElementById("tablaPlaqueta").checked = false;
-  document.getElementById("detalleTabla").value = "";
-
-  actualizarTotal();
-}
 
 window.agregarGohan = function(){
 
@@ -2063,33 +2107,70 @@ window.agregarGohan = function(){
   let frito2 =
     document.getElementById("fritoBase2").checked;
 
+    let observacion =
+  document.getElementById("observacionGohan").value.trim();
+
   let secundarios =
     Array.from(
       document.querySelectorAll(".gohan-secundario:checked")
     ).map(item => item.value);
 
-  // mínimo 3 secundarios
-
   if(secundarios.length < 1){
 
-    alert("Debes escoger mínimo 1 ingredientes secundarios");
+    alert(
+      "Debes escoger mínimo 1 ingrediente secundario"
+    );
 
     return;
   }
 
   let precio = 7990;
 
-  // extras secundarios
-  // desde el 4to en adelante
+  // REGLAS DE SECUNDARIOS
 
-  if(secundarios.length > 3){
+  // SIN PROTEÍNAS
+  if(base1 === "" && base2 === ""){
 
-    let extras = secundarios.length - 3;
+    if(secundarios.length > 5){
 
-    precio += extras * 990;
+      let extras =
+        secundarios.length - 5;
+
+      precio += extras * 990;
+    }
+
   }
 
-  // extras base 1
+  // 1 PROTEÍNA
+  else if(
+    (base1 !== "" && base2 === "") ||
+    (base1 === "" && base2 !== "")
+  ){
+
+    if(secundarios.length > 4){
+
+      let extras =
+        secundarios.length - 4;
+
+      precio += extras * 990;
+    }
+
+  }
+
+  // 2 PROTEÍNAS
+  else{
+
+    if(secundarios.length > 3){
+
+      let extras =
+        secundarios.length - 3;
+
+      precio += extras * 990;
+    }
+
+  }
+
+  // RECARGOS BASE 1
 
   if(base1 === "Lomo"){
     precio += 2200;
@@ -2099,7 +2180,7 @@ window.agregarGohan = function(){
     precio += 3290;
   }
 
-  // extras base 2
+  // RECARGOS BASE 2
 
   if(base2 === "Lomo"){
     precio += 2200;
@@ -2110,22 +2191,46 @@ window.agregarGohan = function(){
   }
 
   let nombreGohan =
-    `Gohan | ${base1}${frito1 ? " Frito" : ""} + ${base2}${frito2 ? " Frito" : ""} | ${secundarios.join(" + ")}`;
+    `Gohan | ${base1 || "Sin proteína"}${frito1 ? " Frito" : ""} + ${base2 || "Sin proteína"}${frito2 ? " Frito" : ""} | ${secundarios.join(" + ")}`;
 
-  // mostrar extras
+
+    
+  if(observacion !== ""){
+
+  nombreGohan +=
+    ` | Obs: ${observacion}`;
+}
+  // TEXTO DE EXTRAS
 
   let extrasTexto = [];
 
-  if(secundarios.length > 3){
+  let secundariosIncluidos = 5;
+
+  if(
+    (base1 !== "" && base2 === "") ||
+    (base1 === "" && base2 !== "")
+  ){
+    secundariosIncluidos = 4;
+  }
+
+  if(
+    base1 !== "" &&
+    base2 !== ""
+  ){
+    secundariosIncluidos = 3;
+  }
+
+  if(secundarios.length > secundariosIncluidos){
 
     extrasTexto.push(
-      `Secundarios extra: +$${(secundarios.length - 3) * 990}`
+      `Secundarios extra: +$${(secundarios.length - secundariosIncluidos) * 990}`
     );
   }
 
-  if(precio > 7990){
+  if(extrasTexto.length > 0){
 
-    nombreGohan += ` (${extrasTexto.join(" | ")})`;
+    nombreGohan +=
+      ` (${extrasTexto.join(" | ")})`;
   }
 
   agregarPedido(nombreGohan, precio);
@@ -2133,6 +2238,12 @@ window.agregarGohan = function(){
   document
     .querySelectorAll(".gohan-secundario")
     .forEach(item => item.checked = false);
+
+  document.getElementById("fritoBase1").checked = false;
+
+  document.getElementById("fritoBase2").checked = false;
+  document.getElementById("observacionGohan").value = "";
+
 }
 
 window.agregarBurger = function(){
@@ -2154,28 +2265,62 @@ window.agregarBurger = function(){
       document.querySelectorAll(".burger-secundario:checked")
     ).map(item => item.value);
 
-  // mínimo 3 secundarios
-
   if(secundarios.length < 1){
 
-    alert("Debes escoger mínimo 1 ingredientes secundarios");
+    alert(
+      "Debes escoger mínimo 1 ingrediente secundario"
+    );
 
     return;
   }
 
   let precio = 8900;
 
-  // extras secundarios
-  // desde el 4to en adelante
+  // REGLAS DE SECUNDARIOS
 
-  if(secundarios.length > 3){
+  // SIN PROTEÍNAS
+  if(base1 === "" && base2 === ""){
 
-    let extras = secundarios.length - 3;
+    if(secundarios.length > 5){
 
-    precio += extras * 990;
+      let extras =
+        secundarios.length - 5;
+
+      precio += extras * 990;
+    }
+
   }
 
-  // extras base 1
+  // 1 PROTEÍNA
+  else if(
+    (base1 !== "" && base2 === "") ||
+    (base1 === "" && base2 !== "")
+  ){
+
+    if(secundarios.length > 4){
+
+      let extras =
+        secundarios.length - 4;
+
+      precio += extras * 990;
+    }
+
+  }
+
+  // 2 PROTEÍNAS
+  else{
+
+    if(secundarios.length > 3){
+
+      let extras =
+        secundarios.length - 3;
+
+      precio += extras * 990;
+    }
+
+  }
+
+  // RECARGOS BASE 1
 
   if(base1 === "Lomo"){
     precio += 2200;
@@ -2185,7 +2330,7 @@ window.agregarBurger = function(){
     precio += 3290;
   }
 
-  // extras base 2
+  // RECARGOS BASE 2
 
   if(base2 === "Lomo"){
     precio += 2200;
@@ -2196,22 +2341,39 @@ window.agregarBurger = function(){
   }
 
   let nombreBurger =
-    `SushiBurger | ${base1}${frito1 ? " Frito" : ""} + ${base2}${frito2 ? " Frito" : ""} | ${secundarios.join(" + ")}`;
+    `SushiBurger | ${base1 || "Sin proteína"}${frito1 ? " Frito" : ""} + ${base2 || "Sin proteína"}${frito2 ? " Frito" : ""} | ${secundarios.join(" + ")}`;
 
-  // mostrar extras
+  // TEXTO DE EXTRAS
 
   let extrasTexto = [];
 
-  if(secundarios.length > 3){
+  let secundariosIncluidos = 5;
+
+  if(
+    (base1 !== "" && base2 === "") ||
+    (base1 === "" && base2 !== "")
+  ){
+    secundariosIncluidos = 4;
+  }
+
+  if(
+    base1 !== "" &&
+    base2 !== ""
+  ){
+    secundariosIncluidos = 3;
+  }
+
+  if(secundarios.length > secundariosIncluidos){
 
     extrasTexto.push(
-      `Secundarios extra: +$${(secundarios.length - 3) * 990}`
+      `Secundarios extra: +$${(secundarios.length - secundariosIncluidos) * 990}`
     );
   }
 
-  if(precio > 8900){
+  if(extrasTexto.length > 0){
 
-    nombreBurger += ` (${extrasTexto.join(" | ")})`;
+    nombreBurger +=
+      ` (${extrasTexto.join(" | ")})`;
   }
 
   agregarPedido(nombreBurger, precio);
@@ -2219,6 +2381,10 @@ window.agregarBurger = function(){
   document
     .querySelectorAll(".burger-secundario")
     .forEach(item => item.checked = false);
+
+  document.getElementById("burgerFrito1").checked = false;
+
+  document.getElementById("burgerFrito2").checked = false;
 }
 
 window.eliminarProducto = function(index){
@@ -2230,6 +2396,60 @@ window.eliminarProducto = function(index){
   actualizarTotal();
 }
 
+window.agregarTabla = function(nombre, precio){
+
+  let cambio1 =
+    document.getElementById("tablaCambio1").checked;
+
+  let cambio2 =
+    document.getElementById("tablaCambio2").checked;
+
+  let panko =
+    document.getElementById("tablaEmpanizar").checked;
+
+  let plaqueta =
+    document.getElementById("tablaPlaqueta").checked;
+
+  let detalle =
+    document.getElementById("detalleTabla").value.trim();
+
+  let precioFinal = precio;
+
+  let descripcion = nombre;
+
+  if(cambio1){
+    precioFinal += 990;
+    descripcion += " | 1 cambio (+990)";
+  }
+
+  if(cambio2){
+    precioFinal += 1980;
+    descripcion += " | 2 cambios (+1980)";
+  }
+
+  if(panko){
+    precioFinal += 490;
+    descripcion += " | Plaqueta panko (+490)";
+  }
+
+  if(plaqueta){
+    precioFinal += 1500;
+    descripcion += " | Plaqueta queso/palta (+1500)";
+  }
+
+  if(detalle !== ""){
+    descripcion += " | " + detalle;
+  }
+
+  agregarPedido(descripcion, precioFinal);
+
+  document.getElementById("tablaCambio1").checked = false;
+  document.getElementById("tablaCambio2").checked = false;
+  document.getElementById("tablaEmpanizar").checked = false;
+  document.getElementById("tablaPlaqueta").checked = false;
+  document.getElementById("detalleTabla").value = "";
+}
+
 window.renderizarPedido = function(){
 
   let lista =
@@ -2239,11 +2459,17 @@ window.renderizarPedido = function(){
 
   pedido.forEach((item, index) => {
 
+    let nombreFormateado =
+      item.nombre.replace(
+        "Obs:",
+        '<span style="color:red;font-weight:bold;">Obs:</span>'
+      );
+
     lista.innerHTML += `
       <li>
 
         <div>
-          ${item.cantidad} x ${item.nombre}
+          ${item.cantidad} x ${nombreFormateado}
           <br>
           <strong>$${item.precio * item.cantidad}</strong>
         </div>
