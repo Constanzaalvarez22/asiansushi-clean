@@ -9,13 +9,29 @@
 
   <style>
 
-    body{
+  body{
   font-family: "Poppins", sans-serif;
-  background: #f5f5f5;
+
+  background-image: url("fondo.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
   margin: 10px;
   padding: 8px;
 }
 
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.85);
+  z-index: -1;
+}
     .container{
       max-width: 1200px;
       margin: auto;
@@ -428,15 +444,15 @@
 
     <div class="proteinas">
 
-      <button onclick="agregarPedido('Camarón rebosado', 5490)">
+      <button onclick="agregarEntrante('Camarón rebosado', 5490)">
         Camarón rebosado
       </button>
 
-      <button onclick="agregarPedido('Pollo rebosado', 4990)">
+      <button onclick="agregarEntrante('Pollo rebosado', 4990)">
         Pollo rebosado
       </button>
 
-      <button onclick="agregarPedido('Salmón rebosado', 6290)">
+      <button onclick="agregarEntrante('Salmón rebosado', 6290)">
         Salmón rebosado
       </button>
 
@@ -445,19 +461,19 @@
 
     <div class="Gyozas">
 
-      <button onclick="agregarGyozas('Mixtas', 4990)">
+      <button onclick="agregarEntrante('Gyozas Mixtas', 4990)">
   Gyozas mixtas
 </button>
 
-<button onclick="agregarGyozas('Camarón', 4990)">
+<button onclick="agregarEntrante('Gyozas Camarón', 4990)">
   Gyozas camarón
 </button>
 
-<button onclick="agregarGyozas('Cerdo', 4990)">
+<button onclick="agregarEntrante('Gyozas Cerdo', 4990)">
   Gyozas cerdo
 </button>
 
-<button onclick="agregarGyozas('Pollo', 4990)">
+<button onclick="agregarEntrante('Gyozas Pollo', 4990)">
   Gyozas pollo
 </button>
 
@@ -473,23 +489,23 @@
 
     <div class="Nigiris">
 
-      <button onclick="agregarPedido('Nigiri avocado', 3890)">
+      <button onclick="agregarEntrante('Nigiri avocado', 3890)">
         Nigiri avocado
       </button>
 
-      <button onclick="agregarPedido('Nigiri ebi', 4490)">
+      <button onclick="agregarEntrante('Nigiri ebi', 4490)">
         Nigiri ebi
       </button>
 
-      <button onclick="agregarPedido('Nigiri sake', 4690)">
+      <button onclick="agregarEntrante('Nigiri sake', 4690)">
         Nigiri sake
       </button>
 
-      <button onclick="agregarPedido('Nigiri Maguro', 4690)">
+      <button onclick="agregarEntrante('Nigiri Maguro', 4690)">
         Nigiri Maguro
       </button>
 
-      <button onclick="agregarPedido('Nigiri Tako', 6290)">
+      <button onclick="agregarEntrante('Nigiri Tako', 6290)">
         Nigiri Tako
       </button>
 
@@ -499,19 +515,19 @@
 
     <div class="Sashimi">
 
-      <button onclick="agregarPedido('Sashimi atún', 6990)">
+      <button onclick="agregarEntrante('Sashimi atún', 6990)">
         Sashimi atún (6 cortes)
       </button>
 
-      <button onclick="agregarPedido('Sashimi salmón', 6990)">
+      <button onclick="agregarEntrante('Sashimi salmón', 6990)">
         Sashimi salmón (6 cortes)
       </button>
 
-       <button onclick="agregarPedido('Sashimi atún', 9800)">
+       <button onclick="agregarEntrante('Sashimi atún', 9800)">
         Sashimi atún (9 cortes)
       </button>
 
-      <button onclick="agregarPedido('Sashimi salmón', 9800)">
+      <button onclick="agregarEntrante('Sashimi salmón', 9800)">
         Sashimi salmón (9 cortes)
       </button>
 
@@ -522,24 +538,34 @@
 
     <div class="Balls">
 
-      <button onclick="agregarPedido('Cangri balls', 6990)">
+      <button onclick="agregarEntrante('Cangri balls', 6990)">
         Cangri balls
       </button>
 
-      <button onclick="agregarPedido('Sake balls', 6490)">
+      <button onclick="agregarEntrante('Sake balls', 6490)">
         Sake balls
       </button>
 
-      <button onclick="agregarPedido('Tori balls', 6490)">
+      <button onclick="agregarEntrante('Tori balls', 6490)">
         Tori balls
       </button>
 
-      <button onclick="agregarPedido('Seta balls', 6990)">
+      <button onclick="agregarEntrante('Seta balls', 6990)">
         Seta balls
       </button>
 
     
 </div>
+
+<br>
+
+ <label>Observación del producto</label>
+
+<input
+  type="text"
+  id="observacionENTRANTE"
+  placeholder="Ej: sin cebollín, bien cocido..."
+>
     </div>
     </div> 
 
@@ -882,6 +908,16 @@
     Agregar Roll
   </button>
 
+     <br>
+
+ <label>Observación del producto</label>
+
+<input
+  type="text"
+  id="observacionATR"
+  placeholder="Ej: sin cebollín, bien cocido..."
+>
+
 </div>
 </div>
 
@@ -1098,7 +1134,7 @@
   placeholder="Ej: sin cebollín, bien cocido..."
 >
 
- <br><br>
+ 
 </div>
 </div>
 
@@ -1314,13 +1350,13 @@
   </button>
 
 
-
+<br>
 
  <label>Observación del producto</label>
 
 <input
   type="text"
-  id="observacionItem"
+  id="observacionBurger"
   placeholder="Ej: sin cebollín, bien cocido..."
 >
 </div>
@@ -1586,6 +1622,29 @@ window.toggleSeccion = function(id){
   }
 }
 
+window.agregarEntrante = function(nombre, precio) {
+
+  let fritas =
+    document.getElementById("gyozasFritas");
+
+  let observacion =
+    document.getElementById("observacionENTRANTE").value.trim();
+
+  if (nombre.startsWith("Gyozas") && fritas.checked) {
+    nombre += " Fritas";
+    fritas.checked = false;
+  }
+
+  if (observacion !== "") {
+    observacion = observacion.replace(/\|/g, "-");
+    nombre += ` | Obs: ${observacion}`;
+  }
+
+  agregarPedido(nombre, precio);
+
+  document.getElementById("observacionENTRANTE").value = "";
+};
+
 window.agregarPedido = function(producto, precio){
 
   console.log("AGREGANDO:");
@@ -1685,28 +1744,6 @@ window.agregarPromoBurger = function(){
   actualizarTotal();
 }
 
-window.agregarGyozas = function(nombre, precio){
-
-  let fritas =
-    document.getElementById("gyozasFritas").checked;
-
-  let descripcion = nombre;
-
-  if(fritas){
-
-    descripcion =
-      `Gyozas ${nombre} fritas`;
-
-  }else{
-
-    descripcion =
-      `Gyozas ${nombre}`;
-  }
-
-  agregarPedido(descripcion, precio);
-
-  document.getElementById("gyozasFritas").checked = false;
-}
 
 window.agregarPromoHandroll = function(){
 
@@ -1769,6 +1806,9 @@ window.agregarRollPersonalizado = function(){
 
   let baseExtraFrita =
     document.getElementById("baseExtraFrita").checked;
+
+    let observacion =
+  document.getElementById("observacionATR").value.trim();
 
   let secundarios =
     Array.from(
@@ -2077,6 +2117,10 @@ if(tipoRoll === "hosomaki"){
       ` | Extras: +$${extrasSecundarios}`;
   }
 
+  if (observacion !== "") {
+  nombreRoll += ` | Obs: ${observacion}`;
+}
+
   agregarPedido(nombreRoll, precio);
 
   document
@@ -2088,6 +2132,7 @@ if(tipoRoll === "hosomaki"){
   document.getElementById("baseExtraFrita").checked = false;
 
   document.getElementById("baseExtra").value = "";
+  document.getElementById("observacionATR").value = "";
 
   actualizarTotal();
 }
@@ -2260,6 +2305,9 @@ window.agregarBurger = function(){
   let frito2 =
     document.getElementById("burgerFrito2").checked;
 
+    let observacion =
+  document.getElementById("observacionBurger").value.trim();
+
   let secundarios =
     Array.from(
       document.querySelectorAll(".burger-secundario:checked")
@@ -2343,6 +2391,11 @@ window.agregarBurger = function(){
   let nombreBurger =
     `SushiBurger | ${base1 || "Sin proteína"}${frito1 ? " Frito" : ""} + ${base2 || "Sin proteína"}${frito2 ? " Frito" : ""} | ${secundarios.join(" + ")}`;
 
+    if(observacion !== ""){
+
+  nombreBurger +=
+    ` | Obs: ${observacion}`;
+}
   // TEXTO DE EXTRAS
 
   let extrasTexto = [];
@@ -2385,6 +2438,7 @@ window.agregarBurger = function(){
   document.getElementById("burgerFrito1").checked = false;
 
   document.getElementById("burgerFrito2").checked = false;
+  document.getElementById("observacionBurger").value = "";
 }
 
 window.eliminarProducto = function(index){
