@@ -195,10 +195,9 @@ body::before {
 
   <br><br>
 
-  <button onclick="login()">
-    Ingresar
-  </button>
-
+  <button type="button" onclick="login()">
+  Ingresar
+</button>
 </div>
 
 <div id="app" style="display:none;">
@@ -321,10 +320,8 @@ body::before {
       id="Palitos"
       placeholder="Cantidad de palitos">
 
-      <input
-      type="text"
-      id="Salsas"
-      placeholder="Salsas">
+  <input type="text" id="Salsas" placeholder="Salsas">
+
 
     </div>
 
@@ -402,7 +399,7 @@ body::before {
     <option value="OPCIÓN 4">OPCIÓN 4</option>
   </select>
 
-  <br><br>
+  <br>
 
   <label>Burger 2</label>
 
@@ -434,7 +431,7 @@ body::before {
   <option value="OPCIÓN 3">OPCIÓN 3</option>
 </select>
 
-<br><br>
+<br>
 
 <label>Handroll 2 (opcional)</label>
 
@@ -445,7 +442,7 @@ body::before {
   <option value="OPCIÓN 3">OPCIÓN 3</option>
 </select>
 
-<br><br>
+<br>
 
 <label>Handroll 3 (opcional)</label>
 
@@ -510,11 +507,15 @@ body::before {
   Gyozas pollo
 </button>
 
-<br>
- <label style="display:block; margin-top:8px;">
-  <input type="checkbox" id="gyozasFritas">
-  Fritas
-</label>
+
+ <div class="checkbox-group">
+
+  <label>
+    <input type="checkbox" id="gyozasFritas">
+    Fritas
+  </label>
+
+</div>
 <br>
     </div>
 
@@ -656,37 +657,39 @@ body::before {
 
     </div>
 
-    <br>
+  
 
-    <label style="display:block; margin-bottom:8px;">
-      <input type="checkbox" id="tablaCambio1">
-      1 cambio (+990)
-    </label>
+    <div class="checkbox-group">
 
-    <label style="display:block; margin-bottom:8px;">
-      <input type="checkbox" id="tablaCambio2">
-      2 cambios (+1980)
-    </label>
+  <label>
+    <input type="checkbox" id="tablaCambio1">
+    1 cambio (+990)
+  </label>
 
-    <label style="display:block; margin-bottom:8px;">
-      <input type="checkbox" id="tablaEmpanizar">
-      Plaqueta panko (+490)
-    </label>
+  <label>
+    <input type="checkbox" id="tablaCambio2">
+    2 cambios (+1980)
+  </label>
 
-    <label style="display:block; margin-bottom:8px;">
-      <input type="checkbox" id="tablaPlaqueta">
-      Plaqueta queso/palta (+1500)
-    </label>
+  <label>
+    <input type="checkbox" id="tablaEmpanizar">
+    Plaqueta panko (+490)
+  </label>
 
-    <br>
+  <label>
+    <input type="checkbox" id="tablaPlaqueta">
+    Plaqueta queso/palta (+1500)
+  </label>
 
-    <label>Observación del producto</label>
+</div>
 
-    <input
-      type="text"
-      id="detalleTabla"
-      placeholder="Ej: cambiar kani por camarón, sin cebollín..."
-    >
+<label>Observación del producto</label>
+
+<input
+  type="text"
+  id="detalleTabla"
+  placeholder="Ej: cambiar kani por camarón, sin cebollín..."
+>
 
     <br><br>
 
@@ -762,19 +765,22 @@ body::before {
 
     </div>
 
-    <br>
+    
+   <div class="checkbox-group">
 
-    <label style="display:block; margin-bottom:8px;">
-      <input type="checkbox" id="premiumCambio1">
-      1 cambio (+990)
-    </label>
+  <label>
+    <input type="checkbox" id="premiumCambio1">
+    1 cambio (+990)
+  </label>
 
-    <label style="display:block; margin-bottom:8px;">
-      <input type="checkbox" id="premiumBandeja">
-      Bandeja extra (+490)
-    </label>
+  <label>
+    <input type="checkbox" id="premiumBandeja">
+    Bandeja extra (+490)
+  </label>
 
-     <label>Observación del producto</label>
+</div>
+
+<label>Observación del producto</label>
 
 <input
   type="text"
@@ -862,10 +868,14 @@ body::before {
 
       </select>
 
-      <label style="margin-top:8px; display:block;">
-        <input type="checkbox" id="baseFrita">
-        Base frita (+990)
-      </label>
+      <div class="checkbox-group" style="margin-top:8px;">
+
+  <label>
+    <input type="checkbox" id="baseFrita">
+    Base frita (+990)
+  </label>
+
+</div>
 
       <br>
 
@@ -888,10 +898,14 @@ body::before {
 
       </select>
 
-      <label style="margin-top:8px; display:block;">
-        <input type="checkbox" id="baseExtraFrita">
-        Base extra frita (+990)
-      </label>
+      <div class="checkbox-group" style="margin-top:8px;">
+
+  <label>
+    <input type="checkbox" id="baseExtraFrita">
+    Base extra frita (+990)
+  </label>
+
+</div>
 
     </div>
 
@@ -993,13 +1007,15 @@ body::before {
 
       </select>
 
-      <label>
-  <input type="checkbox" id="fritoBase1">
-  Frito 
-</label>
+     <div class="checkbox-group">
 
-    </div>
+  <label>
+    <input type="checkbox" id="fritoBase1">
+    Frito
+  </label>
 
+</div>
+</div>
     <div>
 
       <label>Base 2</label>
@@ -1024,10 +1040,14 @@ body::before {
 
       </select>
 
-     <label>
-  <input type="checkbox" id="fritoBase2">
-  Frito
-</label>
+     <div class="checkbox-group">
+
+  <label>
+    <input type="checkbox" id="fritoBase2">
+    Frito
+  </label>
+
+</div>
 
   </div>
   </div>
@@ -1210,11 +1230,14 @@ body::before {
 
       </select>
 
-      <label>
-        <input type="checkbox" id="burgerFrito1">
-        Frito 
-      </label>
+      <div class="checkbox-group">
 
+  <label>
+    <input type="checkbox" id="burgerFrito1">
+    Frito
+  </label>
+
+</div>
     </div>
 
     <!-- BASE 2 -->
@@ -1243,10 +1266,14 @@ body::before {
 
       </select>
 
-      <label>
-        <input type="checkbox" id="burgerFrito2">
-        Frito 
-      </label>
+      <div class="checkbox-group">
+
+  <label>
+    <input type="checkbox" id="burgerFrito2">
+    Frito
+  </label>
+
+</div>
 
     </div>
 
@@ -1555,10 +1582,14 @@ body::before {
 
   </div>
 
+  <br><br>
+
+  <button onclick="cerrarSesion()">
+  Cerrar sesión
+</button>
 </div>
 
 <script type="module">
-
 import { initializeApp }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
@@ -1568,6 +1599,14 @@ import {
   addDoc
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
 
@@ -1582,37 +1621,29 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-import {
-  getAuth,
-  signInWithEmailAndPassword,
-  onAuthStateChanged
-}
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
 const db = getFirestore(app);
-let observacionPedido = "";
+
 const auth = getAuth(app);
+
+let observacionPedido = "";
+
 window.pedido = [];
 
-document
-  .getElementById("tipoRoll")
-  .addEventListener("change", function(){
+window.cerrarSesion = async function() {
 
-    let texto =
-      document.getElementById("textoSecundarios");
+  try {
 
-    if(this.value === "sin"){
+    await signOut(auth);
 
-      texto.innerText =
-        "Ingredientes secundarios (mínimo 1 y máximo 4)";
+    alert("Sesión cerrada");
 
-    } else {
+  } catch(error) {
 
-      texto.innerText =
-        "Ingredientes secundarios (mínimo 1 y máximo 2)";
-    }
+    console.error(error);
 
-});
+    alert("Error al cerrar sesión");
+  }
+};
 
 window.login = async function(){
 
@@ -1827,6 +1858,8 @@ window.agregarPromoBurger = function(){
 
   actualizarTotal();
 }
+
+
 window.guardarObservacionPedido = function() {
 
   observacionPedido =
@@ -2743,7 +2776,9 @@ window.enviarPedido = async function(){
 
       metodoPago:
         document.getElementById("metodoPago").value,
-
+    
+        observacionPedido: observacionPedido || "",
+        
       vuelto:
         document.getElementById("vuelto").value,
 
@@ -2761,6 +2796,7 @@ window.enviarPedido = async function(){
 
       wasabi:
         document.getElementById("wasabi").checked,
+
 
       direccion: direccion,
 
