@@ -2,6 +2,8 @@
 <html lang="es">
 
 <head>
+
+  
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <meta charset="UTF-8">
 
@@ -107,16 +109,18 @@ body::before {
   gap: 10px;
 }
 
-    button{
-      border: none;
-      border-radius: 10px;
-      padding: 12px 12px;
-      cursor: pointer;
-      background: #111;
-      color: white;
-      font-size: 15px;
-    }
+  button{
+  border: none;
+  border-radius: 10px;
+  padding: 12px 12px;
+  cursor: pointer;
+  background: #111;
+  color: white;
 
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+}
     button:hover{
       opacity: 0.9;
     }
@@ -169,6 +173,35 @@ body::before {
 </head>
 
 <body>
+
+
+  <div id="login" class="card" style="max-width:400px; margin:80px auto;">
+
+  <h2>Acceso Sistema</h2>
+
+  <input
+    type="email"
+    id="email"
+    placeholder="Correo"
+  >
+
+  <br><br>
+
+  <input
+    type="password"
+    id="password"
+    placeholder="Contraseña"
+  >
+
+  <br><br>
+
+  <button onclick="login()">
+    Ingresar
+  </button>
+
+</div>
+
+<div id="app" style="display:none;">
 
 <div class="container">
 
@@ -1477,16 +1510,21 @@ body::before {
 
 </div>
   <!-- OBS -->
-   <br>
+  
 <label>Observación del pedido</label>
 
 <input
   type="text"
-  id="observacionItem"
+  id="observacionGeneral"
   placeholder="Ej: sin cebollín, bien cocido..."
 >
 <br><br>
 
+<button onclick="guardarObservacionPedido()">
+  Guardar
+</button>
+
+<br><br>
   <!-- RESUMEN -->
 
   <div class="card">
@@ -1544,8 +1582,16 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-const db = getFirestore(app);
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
+const db = getFirestore(app);
+let observacionPedido = "";
+const auth = getAuth(app);
 window.pedido = [];
 
 document
@@ -1567,6 +1613,44 @@ document
     }
 
 });
+
+window.login = async function(){
+
+  let email =
+    document.getElementById("email").value;
+
+  let password =
+    document.getElementById("password").value;
+
+  try{
+
+    await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+  }catch(error){
+
+    alert("Usuario o contraseña incorrectos");
+  }
+};
+
+onAuthStateChanged(auth, (user) => {
+
+  if(user){
+
+    document.getElementById("login").style.display = "none";
+    document.getElementById("app").style.display = "block";
+
+  }else{
+
+    document.getElementById("login").style.display = "block";
+    document.getElementById("app").style.display = "none";
+  }
+
+});
+
 
 window.actualizarTextoRoll = function(){
 
@@ -1666,7 +1750,8 @@ window.agregarPedido = function(producto, precio){
     pedido.push({
       nombre: producto,
       precio: precio,
-      cantidad: 1
+      cantidad: 1,
+      observacion: observacionPedido || ""
     });
 
   }
@@ -1674,9 +1759,8 @@ window.agregarPedido = function(producto, precio){
   console.log(pedido);
 
   renderizarPedido();
-
   actualizarTotal();
-}
+};
 
 window.agregarRollPremium = function(nombre, precio){
 
@@ -1743,7 +1827,17 @@ window.agregarPromoBurger = function(){
 
   actualizarTotal();
 }
+window.guardarObservacionPedido = function() {
 
+  observacionPedido =
+    document.getElementById("observacionGeneral")
+      .value
+      .trim();
+
+  alert("Guardada: " + observacionPedido);
+
+  renderizarPedido();
+};
 
 window.agregarPromoHandroll = function(){
 
@@ -2137,6 +2231,20 @@ if(tipoRoll === "hosomaki"){
   actualizarTotal();
 }
 
+window.guardarObservacionPedido = function() {
+
+  let input =
+    document.getElementById("observacionGeneral");
+
+  console.log(input);
+
+  observacionPedido =
+    input.value.trim();
+
+  console.log("OBS GUARDADA:", observacionPedido);
+
+  renderizarPedido();
+};
 
 window.agregarGohan = function(){
 
@@ -2540,6 +2648,26 @@ window.renderizarPedido = function(){
     `;
 
   });
+
+  console.log("OBS EN RENDER:", observacionPedido);
+
+  if(observacionPedido !== ""){
+
+    lista.innerHTML += `
+      <li style="
+        background:#fff8dc;
+        display:block;
+        font-weight:bold;
+      ">
+        <span style="color:red;">
+          OBSERVACIÓN GENERAL:
+        </span>
+        <br>
+        ${observacionPedido}
+      </li>
+    `;
+  }
+
 }
 
 window.vaciarPedido = function(){
