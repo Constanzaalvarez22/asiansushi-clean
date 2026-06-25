@@ -375,6 +375,10 @@ body::before {
       Cheese Hot 15% OFF - $5.517
     </button>
 
+     <button onclick="agregarPedido('Umami Roll 20% OFF', 6792)">
+      Umami Roll 20% OFF - $6.792
+    </button>
+
     <button onclick="agregarPedido('Camarones Panko 15% OFF', 4667)">
       Camarones Panko 15% OFF - $4.667
     </button>
@@ -825,6 +829,10 @@ body::before {
           Hosomaki
         </option>
 
+        <option value="sinNori">
+          Sin nori
+        </option>
+
       </select>
 
       <br><br>
@@ -877,7 +885,7 @@ body::before {
 
 </div>
 
-      <br>
+      
 
       <label>Base extra</label>
 
@@ -944,6 +952,8 @@ body::before {
       <label><input type="checkbox" class="secundario" value="Choclito"> Choclito</label>
 
       <label><input type="checkbox" class="secundario" value="Zanahoria"> Zanahoria</label>
+
+      <label><input type="checkbox" class="secundario" value="Jengibre"> Jengibre</label>
 
     </div>
 
@@ -1169,6 +1179,9 @@ body::before {
 
           Zanahoria
         </label>
+
+        <label><input type="checkbox" class="secundario" value="Jengibre"> Jengibre</label>
+
         </div>
 </div>
 
@@ -1399,6 +1412,9 @@ body::before {
           Zanahoria
         </label>
 
+        <label><input type="checkbox" class="secundario" value="Jengibre"> Jengibre</label>
+
+
     </div>
 
   </div>
@@ -1468,6 +1484,18 @@ body::before {
         Sprite 1.5 lt - $2.990
       </button>
 
+      <button onclick="agregarPedido('Monster', 2000)">
+        Monster - $2.000
+      </button>
+
+      <button onclick="agregarPedido('Néctar 300 ml', 1500)">
+        Néctar 300 ml - $1.500
+      </button>
+
+      <button onclick="agregarPedido('Red Bull 250 cc', 1800)">
+        Red Bull 250 cc - $1.800
+      </button>
+
     </div>
 
   </div>
@@ -1530,6 +1558,16 @@ body::before {
        <button onclick="agregarPedido('Huancaína', 900)">
         Huancaína - $900
       </button>
+
+      <button onclick="agregarPedido('Topping Cebollín', 1490)">
+        Topping Cebollín - $1.490
+      </button>
+
+      <button onclick="agregarPedido('Otros', 990)">
+        Otros - $990
+      </button>
+
+
 
     </div>
 
@@ -1914,6 +1952,7 @@ window.agregarPromoHandroll = function(){
   actualizarTotal();
 }
 
+
 window.agregarRollPersonalizado = function(){
 
   let tipoRoll =
@@ -1934,230 +1973,160 @@ window.agregarRollPersonalizado = function(){
   let baseExtraFrita =
     document.getElementById("baseExtraFrita").checked;
 
-    let observacion =
-  document.getElementById("observacionATR").value.trim();
+  let observacion =
+    document.getElementById("observacionATR").value.trim();
 
   let secundarios =
     Array.from(
       document.querySelectorAll(".secundario:checked")
     ).map(item => item.value);
 
- let precio = 5490;
+  let precio = 5490;
 
-if(tipoRoll === "sin"){
-  precio = 6790;
-}
+  if(tipoRoll === "sin"){
+    precio = 6790;
+  }
 
-if(tipoRoll === "hosomaki"){
-  precio = 4290;
-}
+  if(tipoRoll === "sinNori"){
+    precio = 6490;
+  }
+
+  if(tipoRoll === "hosomaki"){
+    precio = 4290;
+  }
 
   let extrasSecundarios = 0;
 
   // VALIDACIONES
 
-// VALIDACIONES
+  if(tipoRoll === "hosomaki"){
 
-if(tipoRoll === "hosomaki"){
+    if(base === ""){
+      alert("Hosomaki debe llevar una proteína");
+      return;
+    }
 
-  if(base === ""){
+    if(base === "Lomo" || base === "Pulpo"){
+      alert("Hosomaki no permite Lomo ni Pulpo");
+      return;
+    }
 
-    alert(
-      "Hosomaki debe llevar una proteína"
-    );
+    if(baseExtra){
+      alert("Hosomaki no permite base extra");
+      return;
+    }
 
-    return;
+    if(baseFrita || baseExtraFrita){
+      alert("Hosomaki no permite frituras");
+      return;
+    }
+
+    if(secundarios.length !== 1){
+      alert("Hosomaki debe llevar exactamente 1 secundario");
+      return;
+    }
+
+  }else if(
+    tipoRoll === "con" ||
+    tipoRoll === "sinNori"
+  ){
+
+    if(base === ""){
+
+      if(secundarios.length < 1 || secundarios.length > 4){
+        alert("Sin base debes elegir entre 1 y 4 secundarios");
+        return;
+      }
+
+      if(secundarios.length >= 4){
+        extrasSecundarios += 990;
+      }
+
+    }else if(baseExtra){
+
+      if(secundarios.length < 1 || secundarios.length > 3){
+        alert("Con 2 bases debes elegir entre 1 y 3 secundarios");
+        return;
+      }
+
+      if(secundarios.length >= 3){
+        extrasSecundarios += 990;
+      }
+
+    }else{
+
+      if(secundarios.length < 1 || secundarios.length > 4){
+        alert("Con 1 base debes elegir entre 1 y 4 secundarios");
+        return;
+      }
+
+      if(secundarios.length > 2){
+        extrasSecundarios =
+          (secundarios.length - 2) * 990;
+      }
+    }
+
+  }else{
+
+    if(base === ""){
+
+      if(secundarios.length < 1 || secundarios.length > 7){
+        alert("Sin base debes elegir entre 1 y 7 secundarios");
+        return;
+      }
+
+      if(secundarios.length > 5){
+        extrasSecundarios =
+          (secundarios.length - 5) * 990;
+      }
+
+    }else if(baseExtra){
+
+      if(secundarios.length < 1 || secundarios.length > 5){
+        alert("Con 2 bases debes elegir entre 1 y 5 secundarios");
+        return;
+      }
+
+      if(secundarios.length > 4){
+        extrasSecundarios += 990;
+      }
+
+    }else{
+
+      if(secundarios.length < 1 || secundarios.length > 6){
+        alert("Con 1 base debes elegir entre 1 y 6 secundarios");
+        return;
+      }
+
+      if(secundarios.length > 4){
+        extrasSecundarios =
+          (secundarios.length - 4) * 990;
+      }
+    }
+  }
+
+  // ENVOLTURAS
+
+  if(
+    tipoRoll !== "hosomaki" &&
+    envoltura === "Masago"
+  ){
+    precio += 1500;
   }
 
   if(
-    base === "Lomo" ||
-    base === "Pulpo"
+    tipoRoll !== "hosomaki" &&
+    envoltura === "Atún"
   ){
-
-    alert(
-      "Hosomaki no permite Lomo ni Pulpo"
-    );
-
-    return;
+    precio += 2500;
   }
 
-  if(baseExtra){
-
-    alert(
-      "Hosomaki no permite base extra"
-    );
-
-    return;
+  if(
+    tipoRoll !== "hosomaki" &&
+    envoltura === "Salmón"
+  ){
+    precio += 2500;
   }
-
-  if(baseFrita || baseExtraFrita){
-
-    alert(
-      "Hosomaki no permite frituras"
-    );
-
-    return;
-  }
-
-  if(secundarios.length !== 1){
-
-    alert(
-      "Hosomaki debe llevar exactamente 1 secundario"
-    );
-
-    return;
-  }
-
-}else if(tipoRoll === "con"){
-
-  if(base === ""){
-
-    // SIN BASE
-    if(
-      secundarios.length < 1 ||
-      secundarios.length > 4
-    ){
-
-      alert(
-        "Sin base debes elegir entre 1 y 4 secundarios"
-      );
-
-      return;
-    }
-
-    if(secundarios.length >= 4){
-      extrasSecundarios += 990;
-    }
-
-  }else if(baseExtra){
-
-    // CON 2 BASES
-    if(
-      secundarios.length < 1 ||
-      secundarios.length > 3
-    ){
-
-      alert(
-        "Con 2 bases debes elegir entre 1 y 3 secundarios"
-      );
-
-      return;
-    }
-
-    if(secundarios.length >= 3){
-      extrasSecundarios += 990;
-    }
-
-  }else{
-
-    // CON 1 BASE
-    if(
-      secundarios.length < 1 ||
-      secundarios.length > 4
-    ){
-
-      alert(
-        "Con 1 base debes elegir entre 1 y 4 secundarios"
-      );
-
-      return;
-    }
-
-    if(secundarios.length > 2){
-      extrasSecundarios =
-        (secundarios.length - 2) * 990;
-    }
-  }
-
-}else{
-  // SIN ARROZ
-
-  if(base === ""){
-
-    if(
-      secundarios.length < 1 ||
-      secundarios.length > 7
-    ){
-
-      alert(
-        "Sin base debes elegir entre 1 y 7 secundarios"
-      );
-
-      return;
-    }
-
-    // 6° y 7° cobran
-    if(secundarios.length > 5){
-      extrasSecundarios =
-        (secundarios.length - 5) * 990;
-    }
-
-  }else if(baseExtra){
-
-    // CON 2 BASES
-
-    if(
-      secundarios.length < 1 ||
-      secundarios.length > 5
-    ){
-
-      alert(
-        "Con 2 bases debes elegir entre 1 y 5 secundarios"
-      );
-
-      return;
-    }
-
-    // 5° cobra
-    if(secundarios.length > 4){
-      extrasSecundarios += 990;
-    }
-
-  }else{
-
-    // CON 1 BASE
-
-    if(
-      secundarios.length < 1 ||
-      secundarios.length > 6
-    ){
-
-      alert(
-        "Con 1 base debes elegir entre 1 y 6 secundarios"
-      );
-
-      return;
-    }
-
-    // 5° y 6° cobran
-    if(secundarios.length > 4){
-      extrasSecundarios =
-        (secundarios.length - 4) * 990;
-    }
-  }
-}
-
-  // ENVOLTURAS
-if(
-  tipoRoll !== "hosomaki" &&
-  envoltura === "Masago"
-){
-  precio += 1500;
-}
-
-if(
-  tipoRoll !== "hosomaki" &&
-  envoltura === "Atún"
-){
-  precio += 2500;
-}
-
-if(
-  tipoRoll !== "hosomaki" &&
-  envoltura === "Salmón"
-){
-  precio += 2500;
-}
 
   // BASES
 
@@ -2171,13 +2140,10 @@ if(
       baseExtra === "Lomo" ||
       baseExtra === "Pulpo";
 
-    // Solo cobra $990 cuando ambas bases son normales
     if(!basePremium && !extraPremium){
       precio += 990;
     }
   }
-
-  // Recargos por proteínas premium
 
   if(base === "Lomo"){
     precio += 2200;
@@ -2195,8 +2161,6 @@ if(
     precio += 3290;
   }
 
-  // Fritas
-
   if(baseFrita){
     precio += 990;
   }
@@ -2205,32 +2169,38 @@ if(
     precio += 990;
   }
 
-  // SECUNDARIOS EXTRA
-
   precio += extrasSecundarios;
 
   // NOMBRE
 
-let nombreRoll;
+  let nombreRoll;
 
-if(tipoRoll === "hosomaki"){
+  if(tipoRoll === "hosomaki"){
 
-  nombreRoll = "Hosomaki";
+    nombreRoll = "Hosomaki";
 
-}else{
+  }else{
 
-  nombreRoll =
-    `Roll ${tipoRoll === "sin" ? "sin arroz" : "con arroz"} | ${envoltura}`;
-}
+    let textoTipo = "con arroz";
+
+    if(tipoRoll === "sin"){
+      textoTipo = "sin arroz";
+    }
+
+    if(tipoRoll === "sinNori"){
+      textoTipo = "sin nori";
+    }
+
+    nombreRoll =
+      ` ${textoTipo} | ${envoltura}`;
+  }
 
   if(base){
-
     nombreRoll +=
       ` | ${base}${baseFrita ? " Frita" : ""}`;
   }
 
   if(baseExtra){
-
     nombreRoll +=
       ` + ${baseExtra}${baseExtraFrita ? " Frita" : ""}`;
   }
@@ -2239,14 +2209,13 @@ if(tipoRoll === "hosomaki"){
     ` | ${secundarios.join(" + ")}`;
 
   if(extrasSecundarios > 0){
-
     nombreRoll +=
-      ` | Extras: +$${extrasSecundarios}`;
+      ` | EX: +$${extrasSecundarios}`;
   }
 
-  if (observacion !== "") {
-  nombreRoll += ` | Obs: ${observacion}`;
-}
+  if(observacion !== ""){
+    nombreRoll += ` | Obs: ${observacion}`;
+  }
 
   agregarPedido(nombreRoll, precio);
 
@@ -2255,9 +2224,7 @@ if(tipoRoll === "hosomaki"){
     .forEach(item => item.checked = false);
 
   document.getElementById("baseFrita").checked = false;
-
   document.getElementById("baseExtraFrita").checked = false;
-
   document.getElementById("baseExtra").value = "";
   document.getElementById("observacionATR").value = "";
 
