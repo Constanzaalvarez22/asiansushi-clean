@@ -299,9 +299,20 @@ body::before {
       id="direccionTexto"
       placeholder="Escribe la dirección exacta">
 
-      <input
-      type="time"
-      id="horario">
+      <div style="display:flex;align-items:center;gap:15px;">
+
+  <input
+    type="time"
+    id="horario">
+
+  <label style="display:flex;align-items:center;gap:5px;cursor:pointer;">
+    <input
+      type="checkbox"
+      id="agendado">
+    Agendado
+  </label>
+
+</div>
 
     </div>
 
@@ -817,6 +828,11 @@ body::before {
 
       <select id="tipoRoll" onchange="actualizarTextoRoll()">
 
+
+        <option value="Tipo">
+          Tipo
+        </option>
+
         <option value="con">
           Con arroz
         </option>
@@ -841,6 +857,7 @@ body::before {
 
       <select id="envoltura">
 
+        <option value="Envoltura">Envoltura</option>
         <option value="Panko">Panko</option>
         <option value="Tempura">Tempura</option>
         <option value="Queso">Queso</option>
@@ -2701,7 +2718,6 @@ window.actualizarTotal = function(){
   document.getElementById("total").innerText =
     `Total: $${total.toLocaleString("es-CL")}`;
 }
-
 window.enviarPedido = async function(){
 
   try {
@@ -2719,16 +2735,18 @@ window.enviarPedido = async function(){
     ){
 
       alert("Debes escribir la dirección");
-
       return;
     }
 
     let subtotal =
-      pedido.reduce((sum, item) =>
-      sum + (item.precio * item.cantidad), 0);
+      pedido.reduce(
+        (sum, item) =>
+          sum + (item.precio * item.cantidad),
+        0
+      );
 
     let delivery =
-      parseInt(direccionData[1]);
+      parseInt(direccionData[1]) || 0;
 
     let total =
       subtotal + delivery;
@@ -2746,9 +2764,10 @@ window.enviarPedido = async function(){
 
       metodoPago:
         document.getElementById("metodoPago").value,
-    
-        observacionPedido: observacionPedido || "",
-        
+
+      observacionPedido:
+        observacionPedido || "",
+
       vuelto:
         document.getElementById("vuelto").value,
 
@@ -2761,27 +2780,35 @@ window.enviarPedido = async function(){
       horario:
         document.getElementById("horario").value,
 
+          agendado:
+    document.getElementById("agendado").checked,
+
       jengibre:
         document.getElementById("jengibre").checked,
 
       wasabi:
         document.getElementById("wasabi").checked,
 
-
-      direccion: direccion,
+      direccion:
+        direccion,
 
       direccionTexto:
         document.getElementById("direccionTexto").value,
 
-      delivery: delivery,
+      delivery:
+        delivery,
 
-      subtotal: subtotal,
+      subtotal:
+        subtotal,
 
-      total: total,
+      total:
+        total,
 
-      productos: pedido,
+      productos:
+        pedido,
 
-      fecha: new Date().toLocaleString()
+      fecha:
+        new Date().toLocaleString()
 
     };
 
@@ -2792,16 +2819,42 @@ window.enviarPedido = async function(){
 
     alert("Pedido enviado al local");
 
+    // VACIAR PRODUCTOS
     vaciarPedido();
+
+    // LIMPIAR DATOS DEL CLIENTE
+    document.getElementById("cliente").value = "";
+    document.getElementById("telefono").value = "";
+    document.getElementById("metodoPago").value = "";
+    document.getElementById("vuelto").value = "";
+
+    // LIMPIAR PALITOS Y SALSAS
+    document.getElementById("Palitos").value = "";
+    document.getElementById("Salsas").value = "";
+
+    // LIMPIAR ENTREGA
+    document.getElementById("horario").value = "";
+    document.getElementById("agendado").checked = false;
+    document.getElementById("direccion").selectedIndex = 0;
+    document.getElementById("direccionTexto").value = "";
+
+    // LIMPIAR EXTRAS
+    document.getElementById("jengibre").checked = false;
+    document.getElementById("wasabi").checked = false;
+
+    // LIMPIAR OBSERVACIÓN GENERAL
+    document.getElementById("observacionGeneral").value = "";
+    observacionPedido = "";
+
+    actualizarTotal();
+    renderizarPedido();
 
   } catch(error){
 
     console.error(error);
-
     alert("Error al enviar pedido");
   }
 }
-
 </script>
 
 </body>
