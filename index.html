@@ -977,7 +977,21 @@ body::before {
 
   </div>
 
-  <br>
+  
+  <label>Cantidad</label>
+
+<select id="cantidadRoll">
+
+  <option value="1" selected>1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+
+</select>
+
+<br>
 
   <button onclick="agregarRollPersonalizado()">
     Agregar Roll
@@ -1575,6 +1589,10 @@ body::before {
       
        <button onclick="agregarPedido('Huancaína', 900)">
         Huancaína - $900
+      </button>
+
+      <button onclick="agregarPedido('Spicy', 900)">
+        Spicy - $900
       </button>
 
       <button onclick="agregarPedido('Topping Cebollín', 1490)">
@@ -2283,6 +2301,11 @@ window.agregarGohan = function(){
 
     let observacion =
   document.getElementById("observacionGohan").value.trim();
+
+  let cantidad =
+  parseInt(
+    document.getElementById("cantidadRoll").value
+  );
 
   let secundarios =
     Array.from(
