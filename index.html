@@ -226,6 +226,10 @@ body::before {
 
       <select id="metodoPago">
 
+       <option value="Sin selección">
+         Sin selección
+        </option>
+
         <option value="Efectivo">
           Efectivo
         </option>
@@ -234,7 +238,7 @@ body::before {
           Transferencia
         </option>
 
-        <option value="Debito">
+        <option value="Tarjeta">
           Tarjeta
         </option>
 
@@ -977,27 +981,24 @@ body::before {
 
   </div>
 
-  
-  <label>Cantidad</label>
+   <br>
+<div style="display:flex; align-items:center; gap:10px;">
 
-<select id="cantidadRoll">
-
-  <option value="1" selected>1</option>
-  <option value="2">2</option>
-  <option value="3">3</option>
-  <option value="4">4</option>
-  <option value="5">5</option>
-  <option value="6">6</option>
-
-</select>
-
-<br>
+  <select id="cantidadRoll" style="width:50px;">
+    <option selected>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+    <option>6</option>
+  </select>
 
   <button onclick="agregarRollPersonalizado()">
     Agregar Roll
   </button>
 
-     <br>
+</div>
+   
 
  <label>Observación del producto</label>
 
@@ -2015,6 +2016,11 @@ window.agregarRollPersonalizado = function(){
   let observacion =
     document.getElementById("observacionATR").value.trim();
 
+    let cantidad =
+  parseInt(
+    document.getElementById("cantidadRoll").value
+  );
+
   let secundarios =
     Array.from(
       document.querySelectorAll(".secundario:checked")
@@ -2256,16 +2262,37 @@ window.agregarRollPersonalizado = function(){
     nombreRoll += ` | Obs: ${observacion}`;
   }
 
-  agregarPedido(nombreRoll, precio);
+for(let i = 0; i < cantidad; i++){
+
+  agregarPedido(
+    nombreRoll,
+    precio
+  );
+
+}
 
   document
     .querySelectorAll(".secundario")
     .forEach(item => item.checked = false);
 
-  document.getElementById("baseFrita").checked = false;
-  document.getElementById("baseExtraFrita").checked = false;
-  document.getElementById("baseExtra").value = "";
-  document.getElementById("observacionATR").value = "";
+  // LIMPIAR ATR
+
+document.getElementById("tipoRoll").value = "con";
+document.getElementById("envoltura").value = "Nori";
+document.getElementById("base").value = "";
+document.getElementById("baseExtra").value = "";
+
+document.getElementById("baseFrita").checked = false;
+document.getElementById("baseExtraFrita").checked = false;
+
+document
+  .querySelectorAll(".secundario")
+  .forEach(item => item.checked = false);
+
+document.getElementById("observacionATR").value = "";
+document.getElementById("cantidadRoll").value = "1";
+
+actualizarTextoRoll();
 
   actualizarTotal();
 }
