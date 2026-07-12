@@ -168,6 +168,29 @@ body::before {
       margin-top: 15px;
     }
 
+
+.layout-pedido{
+  display:grid;
+  grid-template-columns:minmax(0, 1fr) 320px;
+  gap:15px;
+  align-items:start;
+}
+
+.columna-resumen{
+  position:sticky;
+  top:10px;
+}
+
+@media(max-width:850px){
+
+  .layout-pedido{
+    grid-template-columns:1fr;
+  }
+
+  .columna-resumen{
+    position:static;
+  }
+}
   </style>
 
 </head>
@@ -208,6 +231,9 @@ body::before {
 
   <!-- CLIENTE -->
 
+  <div class="layout-pedido">
+
+  <div class="columna-menu">
   <div class="card">
 
     <h2>CLIENTE</h2>
@@ -1611,59 +1637,69 @@ body::before {
   </div>
 
 </div>
-  <!-- OBS -->
-  
-<label>Observación del pedido</label>
 
-<input
-  type="text"
-  id="observacionGeneral"
-  placeholder="Ej: sin cebollín, bien cocido..."
->
-<br><br>
-
-<button onclick="guardarObservacionPedido()">
-  Guardar
-</button>
-
-<br><br>
-  <!-- RESUMEN -->
+  <!-- OBSERVACIÓN -->
 
   <div class="card">
 
-    <h2>RESUMEN PEDIDO</h2>
+    <label>Observación del pedido</label>
 
-    <ul id="lista"></ul>
+    <input
+      type="text"
+      id="observacionGeneral"
+      placeholder="Ej: sin cebollín, bien cocido..."
+    >
 
-    <h2 id="total">
-      TOTAL: $0
-    </h2>
+    <br><br>
 
-    <div class="acciones">
-
-      <button onclick="enviarPedido()">
-        Enviar Pedido
-      </button>
-
-      <button
-      class="btn-danger"
-      onclick="vaciarPedido()">
-
-        Vaciar Pedido
-
-      </button>
-
-    </div>
-    
+    <button onclick="guardarObservacionPedido()">
+      Guardar
+    </button>
 
   </div>
 
-  <br><br>
+  </div>
 
-  <button onclick="cerrarSesion()">
+  <!-- COLUMNA DERECHA -->
+
+  <div class="columna-resumen">
+
+    <div class="card">
+
+      <h2>RESUMEN PEDIDO</h2>
+
+      <ul id="lista"></ul>
+
+      <h2 id="total">
+        TOTAL: $0
+      </h2>
+
+      <div class="acciones">
+
+        <button onclick="enviarPedido()">
+          Enviar Pedido
+        </button>
+
+        <button
+          class="btn-danger"
+          onclick="vaciarPedido()">
+          Vaciar Pedido
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<br><br>
+
+<button onclick="cerrarSesion()">
   Cerrar sesión
 </button>
-
+</div>
 
 </div>
 
